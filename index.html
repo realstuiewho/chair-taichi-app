@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chair Tai Chi & Venous Flow - Live Studio & Academy</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d9488">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +58,6 @@
     .custom-scroll::-webkit-scrollbar-thumb { background: rgba(20, 184, 166, 0.4); border-radius: 9999px; }
     .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(20, 184, 166, 0.7); }
 
-    /* Glassmorphism */
     .mac-glass-card {
       background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
       backdrop-filter: blur(16px);
@@ -134,6 +135,13 @@
       55%, 95% { transform: translate(2px, -20px) rotate(-6deg); }
       100% { transform: translate(0px, 0px) rotate(0deg); }
     }
+    .anim-leg-hover .quad-fire-beam {
+      animation: quadFireGlow 10s infinite ease-in-out;
+    }
+    @keyframes quadFireGlow {
+      0%, 45%, 100% { opacity: 0.15; stroke: #38bdf8; }
+      55%, 95% { opacity: 1; stroke: #f59e0b; }
+    }
 
     .anim-stair-pump .stair-body-carrier {
       animation: stairBodyElevate 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
@@ -172,7 +180,6 @@
       50% { transform: rotate(7deg); }
     }
 
-    /* Print Styles */
     @media print {
       body {
         background: #ffffff !important;
@@ -200,7 +207,7 @@
           CHAIR TAI CHI & VENOUS FLOW
         </h1>
         <p class="text-xs text-brand-300 font-medium" id="headerSetupBadge">
-          Custom Height Engine · Daoyin Spinal Anchor
+          670mm Seat · 370mm Rail · Daoyin Spinal Anchor
         </p>
       </div>
     </div>
@@ -264,26 +271,28 @@
         </div>
       </section>
 
-      <!-- CENTER: STAGE PREVIEW & BIOMECHANICS RIG -->
+      <!-- CENTER: STAGE PREVIEW & BIOMECHANICS RIG (EXPANDED CIRCLE) -->
       <section class="flex-1 flex flex-col bg-slate-900/80 rounded-xl border border-slate-800 overflow-hidden relative shadow-2xl">
         <div id="inspectorView" class="flex-1 flex flex-col p-4 overflow-hidden">
           
           <!-- Exercise Header & Live Controls -->
-          <div class="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0">
-            <div>
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0 gap-3">
+            <div class="truncate">
               <div class="flex items-center gap-2">
-                <span id="inspectBadge" class="text-xs uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40">
-                  Stool (670mm) & Shelf (370mm)
-                </span>
-                <span id="inspectModeSub" class="text-xs text-slate-400">Non-Weight Bearing Venous Return</span>
+                <!-- Trigger to open Height Setup Modal -->
+                <button onclick="openHeightModal()" class="text-xs uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40 hover:bg-brand-500/30 transition-colors flex items-center gap-1.5" title="Click to adjust chair & rail height">
+                  <span id="inspectBadge">Chair (670mm) & Rail (370mm)</span>
+                  <span class="text-[10px] text-brand-400">✏</span>
+                </button>
+                <span id="inspectModeSub" class="text-xs text-slate-400">Non-Weight Bearing</span>
               </div>
-              <h3 id="inspectTitle" class="text-xl font-extrabold text-white mt-1">
+              <h3 id="inspectTitle" class="text-xl font-extrabold text-white mt-1 truncate">
                 Bar Stool & Shelf 20-Rep Ballerina Pump
               </h3>
             </div>
 
             <!-- Stepper Controls & Actions -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 shrink-0">
               <div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono">
                 <div class="flex items-center gap-1.5">
                   <span class="text-slate-400 font-bold">REPS:</span>
@@ -312,46 +321,13 @@
             </div>
           </div>
 
-          <!-- Ergonomic Custom Height Toolbar -->
-          <div class="flex items-center justify-between bg-slate-950/70 px-4 py-2 rounded-xl border border-slate-800 text-xs mt-2 shrink-0">
-            <div class="flex items-center gap-4">
-              <div class="flex items-center gap-2">
-                <span class="text-slate-400 font-bold uppercase tracking-wider text-[11px]">Chair Height:</span>
-                <input type="number" id="seatHeightInput" value="670" min="350" max="900" step="10" onchange="updateCustomHeights()" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-center font-mono font-bold text-brand-300 focus:outline-none focus:border-brand-500">
-                <span class="text-slate-500 font-mono">mm</span>
-                <div class="flex gap-1 ml-1 text-[10px]">
-                  <button onclick="setSeatPreset(450)" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400">450 Dining</button>
-                  <button onclick="setSeatPreset(520)" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400">520 Desk</button>
-                  <button onclick="setSeatPreset(670)" class="px-2 py-0.5 rounded bg-brand-950 border border-brand-500/40 text-brand-300 font-bold">670 Stool</button>
-                </div>
-              </div>
-
-              <div class="h-4 w-px bg-slate-800"></div>
-
-              <div class="flex items-center gap-2">
-                <span class="text-slate-400 font-bold uppercase tracking-wider text-[11px]">Rail/Shelf:</span>
-                <input type="number" id="shelfHeightInput" value="370" min="0" max="600" step="10" onchange="updateCustomHeights()" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-center font-mono font-bold text-sky-300 focus:outline-none focus:border-brand-500">
-                <span class="text-slate-500 font-mono">mm</span>
-                <div class="flex gap-1 ml-1 text-[10px]">
-                  <button onclick="setShelfPreset(0)" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400">0 Floor</button>
-                  <button onclick="setShelfPreset(180)" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400">180 Step</button>
-                  <button onclick="setShelfPreset(370)" class="px-2 py-0.5 rounded bg-brand-950 border border-brand-500/40 text-sky-300 font-bold">370 Shelf</button>
-                </div>
-              </div>
-            </div>
-
-            <button onclick="openHeightInfoModal()" class="text-amberGold-400 hover:text-amberGold-300 font-bold text-[11px] flex items-center gap-1">
-              <span>📐 Why Dimensions Matter</span>
-            </button>
-          </div>
-
-          <!-- Cartoon Vector Stage with Integrated Overlay HUD -->
-          <div class="flex-1 flex flex-col items-center justify-center relative my-1 overflow-hidden">
-            <div class="w-72 h-72 rounded-full bg-slate-950 border-2 border-brand-500/40 shadow-2xl flex items-center justify-center relative overflow-hidden">
+          <!-- Cartoon Vector Stage (Unsquished Rounded Circle) -->
+          <div class="flex-1 flex flex-col items-center justify-center relative my-2 overflow-hidden">
+            <div class="w-80 h-80 rounded-full bg-slate-950 border-2 border-brand-500/40 shadow-2xl flex items-center justify-center relative overflow-hidden shrink-0">
               <div class="absolute inset-0 bg-radial from-brand-500/10 via-transparent to-transparent"></div>
 
-              <!-- Dynamically Scaled Rig -->
-              <svg id="stageSvg" class="w-60 h-60 anim-stool-pump text-slate-100" viewBox="0 0 180 180">
+              <!-- SVG Animated Rig -->
+              <svg id="stageSvg" class="w-68 h-68 anim-stool-pump text-slate-100" viewBox="0 0 180 180">
                 <defs>
                   <linearGradient id="shelfGrad" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stop-color="#334155"/>
@@ -368,14 +344,12 @@
 
                 <!-- Dynamic Stool & Rail Group -->
                 <g id="rigStoolAndShelf">
-                  <!-- Dynamic Stool Height Seat -->
                   <path id="svgSeatPath" d="M 45 95 L 82 95" stroke="#64748b" stroke-width="6" stroke-linecap="round" />
                   <line id="svgStoolLeg1" x1="50" y1="95" x2="45" y2="155" stroke="#475569" stroke-width="3.5" />
                   <line id="svgStoolLeg2" x1="77" y1="95" x2="80" y2="155" stroke="#475569" stroke-width="3.5" />
                   <line id="svgStoolRung" x1="48" y1="130" x2="79" y2="130" stroke="#334155" stroke-width="2.5" />
                   <text id="svgSeatLabel" x="36" y="90" fill="#94a3b8" font-size="7" font-weight="700">670mm SEAT</text>
 
-                  <!-- Dynamic Shelf/Rail Height -->
                   <g id="shelfDeskGroup">
                     <rect id="svgShelfRect" x="110" y="128" width="48" height="8" rx="2" fill="url(#shelfGrad)" stroke="#38bdf8" stroke-width="1.5" />
                     <line id="svgShelfLeg1" x1="120" y1="135" x2="120" y2="155" stroke="#475569" stroke-width="3" />
@@ -471,11 +445,11 @@
             </div>
 
             <!-- Stage Cues -->
-            <div class="mt-2 text-center max-w-xl px-4">
+            <div class="mt-3 text-center max-w-xl px-4">
               <p id="inspectCue" class="text-sm font-semibold text-slate-100 leading-tight">
                 Sit on your chair with balls of feet perched on the elevated rail/shelf. Hold stool rungs behind hips. Sink heels 5s, then push up onto ballerina tippy-toes for 5s.
               </p>
-              <div class="mt-1.5 flex items-center justify-center gap-4 text-xs font-bold text-slate-300">
+              <div class="mt-2 flex items-center justify-center gap-4 text-xs font-bold text-slate-300">
                 <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Non-weight bearing</span>
                 <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span> Zero knee flex required</span>
                 <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amberGold-400"></span> Hands locked low</span>
@@ -488,9 +462,14 @@
               <span class="font-bold text-slate-300">Pacing:</span>
               <span id="inspectTiming" class="text-brand-300 font-bold font-mono">5s Sink + 5s Press</span>
             </div>
-            <button onclick="openWisdomModalForInspected()" class="text-amberGold-400 hover:text-amberGold-300 font-bold text-xs flex items-center gap-1">
-              <span>💡 Read Master's Insight</span>
-            </button>
+            <div class="flex items-center gap-3">
+              <button onclick="openHeightModal()" class="text-brand-400 hover:text-brand-300 font-bold text-xs flex items-center gap-1">
+                <span>📐 Adjust Dimensions</span>
+              </button>
+              <button onclick="openWisdomModalForInspected()" class="text-amberGold-400 hover:text-amberGold-300 font-bold text-xs flex items-center gap-1">
+                <span>💡 Read Master's Insight</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -694,31 +673,63 @@
   </main>
 
   <!-- =========================================================
-       MODALS
+       POPUP MODALS
        ========================================================= -->
-  <!-- Height Information Modal -->
-  <div id="heightInfoModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="mac-glass-card rounded-3xl p-7 w-full max-w-lg shadow-2xl space-y-4">
+  <!-- DEDICATED HEIGHT POPUP MODAL (REPLACES CLUTTERED BAR) -->
+  <div id="heightModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="mac-glass-card rounded-3xl p-6 w-full max-w-md shadow-2xl space-y-4">
       <div class="flex justify-between items-start border-b border-slate-700/60 pb-3">
         <div class="flex items-center gap-2">
           <span class="text-2xl">📐</span>
           <div>
-            <span class="text-xs text-amberGold-400 font-bold uppercase tracking-widest">Ergonomics & Mechanics</span>
-            <h3 class="text-lg font-bold text-white">Why Chair & Rail Height Matters</h3>
+            <span class="text-xs text-brand-300 font-bold uppercase tracking-wider">Ergonomic Setup</span>
+            <h3 class="text-base font-extrabold text-white">Chair & Foot Rail Heights</h3>
           </div>
         </div>
-        <button onclick="closeHeightInfoModal()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+        <button onclick="closeHeightModal()" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
       </div>
 
-      <div class="space-y-3 text-xs leading-relaxed text-slate-200">
-        <p><strong>The 670mm High Stool Advantage:</strong> Sitting with your hips higher than your knees opens the femoral triangle, reducing pressure on the femoral vein and allowing blood to return with minimal resistance.</p>
-        <p><strong>The 370mm Foot Rail / Shelf Elevation:</strong> Elevating your feet onto a rail or shelf levels the lower leg, allowing the ankle to pivot freely without requiring knee flexion or grinding surgical hardware.</p>
-        <p><strong>Standard 450mm Chairs:</strong> If practicing on a dining chair, setting the rail to 0mm (floor) or 180mm (step riser) maintains safe joint angles.</p>
+      <div class="space-y-4">
+        <!-- Chair Height Section -->
+        <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-bold text-slate-300 uppercase">Chair Seat Height</label>
+            <div class="flex items-center gap-1 font-mono">
+              <input type="number" id="seatHeightInput" value="670" min="350" max="900" step="10" onchange="updateCustomHeights()" class="w-16 bg-slate-900 border border-slate-700 rounded px-2 py-0.5 text-center font-bold text-brand-300 text-xs focus:outline-none focus:border-brand-500">
+              <span class="text-slate-400 text-xs">mm</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="setSeatPreset(450)" class="py-1.5 px-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 text-xs font-semibold">450mm Dining</button>
+            <button onclick="setSeatPreset(520)" class="py-1.5 px-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 text-xs font-semibold">520mm Desk</button>
+            <button onclick="setSeatPreset(670)" class="py-1.5 px-2 rounded-lg bg-brand-950 border border-brand-500/50 text-brand-300 text-xs font-bold">670mm Stool</button>
+          </div>
+        </div>
+
+        <!-- Rail/Shelf Height Section -->
+        <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-bold text-slate-300 uppercase">Foot Rail / Shelf Height</label>
+            <div class="flex items-center gap-1 font-mono">
+              <input type="number" id="shelfHeightInput" value="370" min="0" max="600" step="10" onchange="updateCustomHeights()" class="w-16 bg-slate-900 border border-slate-700 rounded px-2 py-0.5 text-center font-bold text-sky-300 text-xs focus:outline-none focus:border-brand-500">
+              <span class="text-slate-400 text-xs">mm</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="setShelfPreset(0)" class="py-1.5 px-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 text-xs font-semibold">0mm Floor</button>
+            <button onclick="setShelfPreset(180)" class="py-1.5 px-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 text-xs font-semibold">180mm Step</button>
+            <button onclick="setShelfPreset(370)" class="py-1.5 px-2 rounded-lg bg-brand-950 border border-brand-500/50 text-sky-300 text-xs font-bold">370mm Shelf</button>
+          </div>
+        </div>
       </div>
 
-      <div class="flex justify-end pt-2">
-        <button onclick="closeHeightInfoModal()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs">
-          Understood
+      <div class="p-2.5 bg-slate-900/50 rounded-lg text-[11px] text-slate-400 leading-snug">
+        💡 <strong>Clinical Tip:</strong> Having seat height higher than knees reduces femoral vein pressure, easing venous return past surgical hardware.
+      </div>
+
+      <div class="flex justify-end pt-1">
+        <button onclick="closeHeightModal()" class="px-5 py-2 rounded-xl mac-gloss-btn text-white text-xs font-bold shadow">
+          Apply & Close
         </button>
       </div>
     </div>
@@ -1119,7 +1130,7 @@
     let currentRoutineKey = 'preset_venous_20';
     let activeKioskGate = 'all';
 
-    // State for In-Place Practice
+    // In-Place Practice State
     let isInPlaceRunning = false;
     let inPlaceTimer = null;
     let inPlaceSet = 1;
@@ -1127,7 +1138,7 @@
     let inPlacePhase = 'sink';
     let inPlaceSecondsLeft = 5;
 
-    // State for Full Queue Runner
+    // Full Queue Runner State
     let isFlowRunning = false;
     let isFlowPaused = false;
     let flowQueueIndex = 0;
@@ -1197,7 +1208,14 @@
       }
     }
 
-    /* CUSTOM ERGONOMIC HEIGHT ADJUSTER */
+    /* HEIGHT POPUP CONTROLLER */
+    function openHeightModal() {
+      document.getElementById('heightModal').classList.remove('hidden');
+    }
+    function closeHeightModal() {
+      document.getElementById('heightModal').classList.add('hidden');
+    }
+
     function setSeatPreset(mm) {
       customSeatHeight = mm;
       document.getElementById('seatHeightInput').value = mm;
@@ -1214,12 +1232,10 @@
       customSeatHeight = parseInt(document.getElementById('seatHeightInput').value) || 670;
       customShelfHeight = parseInt(document.getElementById('shelfHeightInput').value) || 370;
 
-      // Update Header & Badge
       document.getElementById('headerSetupBadge').innerText = `${customSeatHeight}mm Seat · ${customShelfHeight}mm Rail · Daoyin Anchor`;
       document.getElementById('inspectBadge').innerText = `Chair (${customSeatHeight}mm) & Rail (${customShelfHeight}mm)`;
 
-      // Dynamically Shift SVG Elements vertically
-      const seatY = 155 - ((customSeatHeight / 670) * 60); // calculate visual level
+      const seatY = 155 - ((customSeatHeight / 670) * 60);
       const shelfY = 155 - ((customShelfHeight / 370) * 27);
 
       document.getElementById('svgSeatPath').setAttribute('d', `M 45 ${seatY} L 82 ${seatY}`);
@@ -1233,13 +1249,6 @@
       document.getElementById('svgShelfLabel').textContent = `${customShelfHeight}mm SHELF`;
 
       updatePrintSheet();
-    }
-
-    function openHeightInfoModal() {
-      document.getElementById('heightInfoModal').classList.remove('hidden');
-    }
-    function closeHeightInfoModal() {
-      document.getElementById('heightInfoModal').classList.add('hidden');
     }
 
     /* STEPPERS */
@@ -1748,11 +1757,11 @@
       if (found.mode === 'step') {
         rigStoolAndShelf.classList.add('hidden');
         rigStairStep.classList.remove('hidden');
-        stageSvg.className.baseVal = `w-60 h-60 anim-stair-pump text-slate-100`;
+        stageSvg.className.baseVal = `w-68 h-68 anim-stair-pump text-slate-100`;
       } else {
         rigStairStep.classList.add('hidden');
         rigStoolAndShelf.classList.remove('hidden');
-        stageSvg.className.baseVal = `w-60 h-60 ${found.animClass} text-slate-100`;
+        stageSvg.className.baseVal = `w-68 h-68 ${found.animClass} text-slate-100`;
         daoyinStaffBar.style.display = found.hasStaff ? 'block' : 'none';
 
         if (found.id === 'commencing_breath' || found.id.includes('grasp') || found.id.includes('white_crane')) {
@@ -1896,6 +1905,15 @@
       loadRoutineByKey('preset_venous_20');
       updateCustomHeights();
     });
+  </script>
+
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => console.log('SW registration failed:', err));
+      });
+    }
   </script>
 </body>
 </html>
