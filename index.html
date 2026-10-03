@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chair Tai Chi & Venous Flow - Live Studio & Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Cinzel"', 'serif']
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              950: '#042f2e'
+            },
+            amberGold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              950: '#451a03'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Strict Viewport Lock */
+    html, body {
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
+      background-color: #070d14;
+      color: #f1f5f9;
+      user-select: none;
+    }
+
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
+    .custom-scroll::-webkit-scrollbar-thumb { background: rgba(20, 184, 166, 0.4); border-radius: 9999px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(20, 184, 166, 0.7); }
+
+    /* Glassmorphism */
+    .mac-glass-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .mac-gloss-btn {
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(5, 150, 105, 0.4);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mac-gloss-btn:hover {
+      background: linear-gradient(180deg, #34d399 0%, #047857 100%);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 6px 14px rgba(16, 185, 129, 0.5);
+    }
+
+    .mac-stop-btn {
+      background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(185, 28, 28, 0.4);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mac-stop-btn:hover {
+      background: linear-gradient(180deg, #f87171 0%, #991b1b 100%);
+    }
+
+    .kiosk-hover-card {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .kiosk-hover-card:hover {
+      border-color: rgba(45, 212, 191, 0.75);
+      box-shadow: 0 18px 36px -6px rgba(13, 148, 136, 0.45);
+      transform: translateY(-3px);
+    }
+    .kiosk-anim-reveal-box {
+      max-height: 0px;
+      opacity: 0;
+      transform: scale(0.92);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+    .kiosk-hover-card:hover .kiosk-anim-reveal-box {
+      max-height: 180px;
+      opacity: 1;
+      transform: scale(1);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Biomechanical Animations */
+    .anim-stool-pump .foot-lever-group {
+      animation: soleusPumpCycle 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: 142px 133px;
+    }
+    @keyframes soleusPumpCycle {
+      0%, 45% { transform: rotate(26deg); }
+      50%, 95% { transform: rotate(-32deg); }
+      100% { transform: rotate(26deg); }
+    }
+
+    .anim-stool-pump .venous-pulse-stream {
+      animation: venousSurge 10s infinite ease-in-out;
+    }
+    @keyframes venousSurge {
+      0%, 45% { stroke-dashoffset: 60; opacity: 0.15; stroke: #38bdf8; }
+      55%, 90% { stroke-dashoffset: 0; opacity: 1; stroke: #f59e0b; }
+      100% { stroke-dashoffset: 60; opacity: 0.15; }
+    }
+
+    .anim-leg-hover .floating-leg-assy {
+      animation: hoverLegOneInch 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: 90px 105px;
+    }
+    @keyframes hoverLegOneInch {
+      0%, 45% { transform: translate(0px, 0px) rotate(0deg); }
+      55%, 95% { transform: translate(2px, -20px) rotate(-6deg); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+
+    .anim-stair-pump .stair-body-carrier {
+      animation: stairBodyElevate 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: 100px 145px;
+    }
+    .anim-stair-pump .stair-ankle-lever {
+      animation: stairAnkleFlex 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: 94px 132px;
+    }
+    @keyframes stairBodyElevate {
+      0%, 45% { transform: translateY(7px); }
+      55%, 95% { transform: translateY(-16px); }
+      100% { transform: translateY(7px); }
+    }
+    @keyframes stairAnkleFlex {
+      0%, 45% { transform: rotate(22deg); }
+      55%, 95% { transform: rotate(-36deg); }
+      100% { transform: rotate(22deg); }
+    }
+
+    .anim-taichi-breath .taichi-arms {
+      animation: floatWristsWave 6s infinite ease-in-out;
+      transform-origin: 82px 75px;
+    }
+    @keyframes floatWristsWave {
+      0%, 100% { transform: rotate(6deg) translateY(0); }
+      50% { transform: rotate(-24deg) translateY(-4px); }
+    }
+
+    .anim-cloud-hands .torso-core-rig {
+      animation: ribTwistSweep 7s infinite ease-in-out;
+      transform-origin: 88px 105px;
+    }
+    @keyframes ribTwistSweep {
+      0%, 100% { transform: rotate(-7deg); }
+      50% { transform: rotate(7deg); }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+      .no-print { display: none !important; }
+      #printClinicSheet { display: block !important; }
+    }
+  </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden bg-slate-950 text-slate-100 font-sans antialiased">
+
+  <!-- =========================================================
+       TOP GLOBAL HEADER
+       ========================================================= -->
+  <header class="h-16 border-b border-slate-800 bg-slate-900/95 px-5 flex items-center justify-between shrink-0 no-print z-30">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center shadow-lg shadow-brand-500/25">
+        <span class="text-slate-950 font-black text-lg">☯</span>
+      </div>
+      <div>
+        <h1 class="text-base font-extrabold tracking-tight text-white flex items-center gap-2">
+          CHAIR TAI CHI & VENOUS FLOW
+        </h1>
+        <p class="text-xs text-brand-300 font-medium" id="headerSetupBadge">
+          Custom Height Engine · Daoyin Spinal Anchor
+        </p>
+      </div>
+    </div>
+
+    <!-- Mode Tabs -->
+    <div class="flex items-center gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+      <button id="viewBtnStudio" onclick="switchViewMode('studio')" class="px-4 py-1.5 rounded-lg text-sm font-bold text-brand-300 bg-brand-950 border border-brand-500/40 transition-all flex items-center gap-2">
+        <span>⚙</span> Studio Planner
+      </button>
+      <button id="viewBtnKiosk" onclick="switchViewMode('kiosk')" class="px-4 py-1.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition-all flex items-center gap-2">
+        <span>🏛</span> Kiosk Cards
+      </button>
+      <button id="viewBtnAcademy" onclick="switchViewMode('academy')" class="px-4 py-1.5 rounded-lg text-sm font-bold text-amberGold-400 hover:text-amberGold-300 transition-all flex items-center gap-2">
+        <span>🎓</span> Academy & Diploma
+      </button>
+    </div>
+
+    <!-- Audio & Routine Controls -->
+    <div class="flex items-center gap-3">
+      <button id="audioToggleBtn" onclick="toggleSoundSystem()" class="px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-sm flex items-center gap-1.5 text-slate-200 transition-colors font-semibold">
+        <span id="audioIcon">🔔</span>
+        <span id="audioText">Chimes On</span>
+      </button>
+
+      <div class="flex items-center gap-1.5 bg-slate-950 px-2.5 py-1.5 rounded-xl border border-slate-800 text-sm">
+        <select id="routineSelect" onchange="handleRoutineSelectChange()" class="bg-slate-900 text-brand-300 font-bold border border-slate-700 rounded-lg px-2 py-0.5 text-xs focus:outline-none focus:border-brand-500">
+        </select>
+        <button onclick="openSaveRoutineModal()" class="text-xs px-2 py-1 rounded bg-brand-600 hover:bg-brand-500 text-white font-bold transition-colors">
+          💾
+        </button>
+        <button onclick="deleteCurrentRoutine()" id="btnDeleteRoutine" class="text-xs px-1.5 py-1 rounded text-rose-400 hover:bg-rose-950/40 transition-colors" title="Delete custom routine">
+          🗑
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       MAIN WORKSPACE
+       ========================================================= -->
+  <main class="flex-1 flex overflow-hidden p-3 gap-3 no-print relative">
+
+    <!-- VIEW 1: STUDIO WORKSPACE -->
+    <div id="studioView" class="flex-1 flex gap-3 overflow-hidden">
+      
+      <!-- LEFT: MOVEMENT LIBRARY -->
+      <section class="w-80 flex flex-col bg-slate-900/70 rounded-xl border border-slate-800 shrink-0 overflow-hidden shadow-inner">
+        <div class="p-3 border-b border-slate-800 bg-slate-900 flex items-center justify-between">
+          <div>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-brand-300">Exercise Library</h2>
+            <p class="text-xs text-slate-400">Click to load into center stage</p>
+          </div>
+          <span id="libBadgeCount" class="text-xs font-bold bg-slate-800 text-slate-300 px-2.5 py-0.5 rounded-full border border-slate-700">12 moves</span>
+        </div>
+
+        <div id="exerciseLibraryList" class="flex-1 overflow-y-auto custom-scroll p-2.5 space-y-2.5"></div>
+
+        <div class="p-3 bg-slate-950 border-t border-slate-800 text-xs text-slate-300 flex items-start gap-2.5 leading-relaxed">
+          <span class="text-amberGold-400 text-base shrink-0">⚓</span>
+          <span><strong>Hands Low Behind Chair:</strong> Grasping low rungs locks the lumbar spine so the legs float with zero knee joint strain.</span>
+        </div>
+      </section>
+
+      <!-- CENTER: STAGE PREVIEW & BIOMECHANICS RIG -->
+      <section class="flex-1 flex flex-col bg-slate-900/80 rounded-xl border border-slate-800 overflow-hidden relative shadow-2xl">
+        <div id="inspectorView" class="flex-1 flex flex-col p-4 overflow-hidden">
+          
+          <!-- Exercise Header & Live Controls -->
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0">
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="inspectBadge" class="text-xs uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40">
+                  Stool (670mm) & Shelf (370mm)
+                </span>
+                <span id="inspectModeSub" class="text-xs text-slate-400">Non-Weight Bearing Venous Return</span>
+              </div>
+              <h3 id="inspectTitle" class="text-xl font-extrabold text-white mt-1">
+                Bar Stool & Shelf 20-Rep Ballerina Pump
+              </h3>
+            </div>
+
+            <!-- Stepper Controls & Actions -->
+            <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-slate-400 font-bold">REPS:</span>
+                  <button onclick="adjustCenterReps(-1)" class="w-5 h-5 rounded bg-slate-800 text-white font-bold hover:bg-slate-700">-</button>
+                  <span id="centerRepsDisplay" class="font-bold text-brand-300 text-sm w-6 text-center">20</span>
+                  <button onclick="adjustCenterReps(1)" class="w-5 h-5 rounded bg-slate-800 text-white font-bold hover:bg-slate-700">+</button>
+                </div>
+                <div class="h-4 w-px bg-slate-800"></div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-slate-400 font-bold">SETS:</span>
+                  <button onclick="adjustCenterSets(-1)" class="w-5 h-5 rounded bg-slate-800 text-white font-bold hover:bg-slate-700">-</button>
+                  <span id="centerSetsDisplay" class="font-bold text-brand-300 text-sm w-4 text-center">1</span>
+                  <button onclick="adjustCenterSets(1)" class="w-5 h-5 rounded bg-slate-800 text-white font-bold hover:bg-slate-700">+</button>
+                </div>
+              </div>
+
+              <!-- In-Place Play/Stop Button -->
+              <button id="centerPlayBtn" onclick="togglePlayThisMoveInPlace()" class="px-5 py-2 rounded-xl mac-gloss-btn text-white font-black text-xs shadow-lg transition-all flex items-center gap-1.5">
+                <span id="centerPlayBtnIcon" class="text-sm">▶</span> 
+                <span id="centerPlayBtnText">PLAY THIS MOVE</span>
+              </button>
+
+              <button onclick="addInspectedExercise()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold text-xs transition-colors flex items-center gap-1 shadow">
+                <span>+ Add to Queue</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ergonomic Custom Height Toolbar -->
+          <div class="flex items-center justify-between bg-slate-950/70 px-4 py-2 rounded-xl border border-slate-800 text-xs mt-2 shrink-0">
+            <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[11px]">Chair Height:</span>
+                <input type="number" id="seatHeightInput" value="670" min="350" max="900" step="10" onchange="updateCustomHeights()" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-center font-mono font-bold text-brand-300 focus:outline-none focus:border-brand-500">
+                <span class="text-slate-500 font-mono">mm</span>
+                <div class="flex gap-1 ml-1 text-[10px]">
+                  <button onclick="setSeatPreset(450)" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400">450 Dining</button>
+                  <button onclick="setSeatPreset(520)" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400">520 Desk</button>
+                  <button onclick="setSeatPreset(670)" class="px-2 py-0.5 rounded bg-brand-950 border border-brand-500/40 text-brand-300 font-bold">670 Stool</button>
+                </div>
+              </div>
+
+              <div class="h-4 w-px bg-slate-800"></div>
+
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[11px]">Rail/Shelf:</span>
+                <input type="number" id="shelfHeightInput" value="370" min="0" max="600" step="10" onchange="updateCustomHeights()" class="w-16 bg-slate-900 border border-slate-700 rounded px-1.5 py-0.5 text-center font-mono font-bold text-sky-300 focus:outline-none focus:border-brand-500">
+                <span class="text-slate-500 font-mono">mm</span>
+                <div class="flex gap-1 ml-1 text-[10px]">
+                  <button onclick="setShelfPreset(0)" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400">0 Floor</button>
+                  <button onclick="setShelfPreset(180)" class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400">180 Step</button>
+                  <button onclick="setShelfPreset(370)" class="px-2 py-0.5 rounded bg-brand-950 border border-brand-500/40 text-sky-300 font-bold">370 Shelf</button>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="openHeightInfoModal()" class="text-amberGold-400 hover:text-amberGold-300 font-bold text-[11px] flex items-center gap-1">
+              <span>📐 Why Dimensions Matter</span>
+            </button>
+          </div>
+
+          <!-- Cartoon Vector Stage with Integrated Overlay HUD -->
+          <div class="flex-1 flex flex-col items-center justify-center relative my-1 overflow-hidden">
+            <div class="w-72 h-72 rounded-full bg-slate-950 border-2 border-brand-500/40 shadow-2xl flex items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-radial from-brand-500/10 via-transparent to-transparent"></div>
+
+              <!-- Dynamically Scaled Rig -->
+              <svg id="stageSvg" class="w-60 h-60 anim-stool-pump text-slate-100" viewBox="0 0 180 180">
+                <defs>
+                  <linearGradient id="shelfGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#334155"/>
+                    <stop offset="50%" stop-color="#94a3b8"/>
+                    <stop offset="100%" stop-color="#334155"/>
+                  </linearGradient>
+                  <linearGradient id="robeGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0d9488"/>
+                    <stop offset="100%" stop-color="#042f2e"/>
+                  </linearGradient>
+                </defs>
+
+                <line x1="15" y1="155" x2="165" y2="155" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3" />
+
+                <!-- Dynamic Stool & Rail Group -->
+                <g id="rigStoolAndShelf">
+                  <!-- Dynamic Stool Height Seat -->
+                  <path id="svgSeatPath" d="M 45 95 L 82 95" stroke="#64748b" stroke-width="6" stroke-linecap="round" />
+                  <line id="svgStoolLeg1" x1="50" y1="95" x2="45" y2="155" stroke="#475569" stroke-width="3.5" />
+                  <line id="svgStoolLeg2" x1="77" y1="95" x2="80" y2="155" stroke="#475569" stroke-width="3.5" />
+                  <line id="svgStoolRung" x1="48" y1="130" x2="79" y2="130" stroke="#334155" stroke-width="2.5" />
+                  <text id="svgSeatLabel" x="36" y="90" fill="#94a3b8" font-size="7" font-weight="700">670mm SEAT</text>
+
+                  <!-- Dynamic Shelf/Rail Height -->
+                  <g id="shelfDeskGroup">
+                    <rect id="svgShelfRect" x="110" y="128" width="48" height="8" rx="2" fill="url(#shelfGrad)" stroke="#38bdf8" stroke-width="1.5" />
+                    <line id="svgShelfLeg1" x1="120" y1="135" x2="120" y2="155" stroke="#475569" stroke-width="3" />
+                    <line id="svgShelfLeg2" x1="148" y1="135" x2="148" y2="155" stroke="#475569" stroke-width="3" />
+                    <text id="svgShelfLabel" x="115" y="123" fill="#38bdf8" font-size="7" font-weight="700">370mm SHELF</text>
+                  </g>
+
+                  <!-- Daoyin Rear Staff -->
+                  <line x1="52" y1="65" x2="52" y2="130" stroke="#f59e0b" stroke-width="3" stroke-dasharray="2,2" id="daoyinStaffBar" />
+
+                  <!-- Character -->
+                  <g id="figureSeated">
+                    <circle cx="68" cy="52" r="9.5" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+                    <circle cx="72" cy="51" r="1.2" fill="#713f12" />
+                    <path d="M 70 55 Q 73 57 75 55" stroke="#713f12" stroke-width="1" fill="none" />
+                    <path d="M 64 45 Q 68 41 72 45" stroke="#ca8a04" stroke-width="2" fill="none" />
+
+                    <!-- Torso -->
+                    <g class="torso-core-rig">
+                      <path d="M 62 61 L 76 61 L 74 95 L 64 95 Z" fill="url(#robeGrad)" stroke="#2dd4bf" stroke-width="2" />
+                      
+                      <g id="armsAnchorRig">
+                        <path d="M 65 68 L 54 80 L 52 102" fill="none" stroke="#fde047" stroke-width="4.5" stroke-linecap="round" />
+                        <circle cx="52" cy="102" r="3" fill="#ca8a04" />
+                      </g>
+
+                      <g id="armsTaiChiFlowRig" class="hidden taichi-arms">
+                        <path d="M 68 68 Q 84 76 92 88" fill="none" stroke="#fde047" stroke-width="4.5" stroke-linecap="round" />
+                        <circle cx="92" cy="88" r="3" fill="#ca8a04" />
+                      </g>
+                    </g>
+
+                    <path d="M 64 94 L 98 96 L 98 104 L 64 100 Z" fill="#0f766e" stroke="#115e59" stroke-width="1.5" />
+
+                    <!-- Lower Leg & Shin -->
+                    <g class="floating-leg-assy">
+                      <path d="M 98 96 L 118 129 L 112 131 L 94 102 Z" fill="#134e4a" stroke="#2dd4bf" stroke-width="1.5" />
+                      <line x1="97" y1="97" x2="116" y2="129" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3,3" opacity="0.85" />
+                      <line class="venous-pulse-stream" x1="116" y1="129" x2="98" y2="98" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,6" stroke-linecap="round" />
+
+                      <!-- Foot & Ankle Lever -->
+                      <g class="foot-lever-group">
+                        <circle cx="114" cy="132" r="3.5" fill="#f59e0b" />
+                        <path d="M 112 133 L 136 129 L 140 133 L 114 136 Z" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+                        <circle cx="128" cy="129" r="3.5" fill="#38bdf8" />
+                        <line x1="136" y1="129" x2="144" y2="128" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+
+                <!-- RIG 2: STANDING STEP RIG -->
+                <g id="rigStairStep" class="hidden">
+                  <path d="M 20 155 L 90 155 L 90 125 L 165 125" fill="none" stroke="#475569" stroke-width="4" />
+                  <rect x="90" y="125" width="75" height="30" fill="#1e293b" opacity="0.5" />
+                  <line x1="125" y1="45" x2="125" y2="125" stroke="#64748b" stroke-width="3" />
+                  <line x1="100" y1="60" x2="150" y2="60" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" />
+                  <text x="96" y="118" fill="#38bdf8" font-size="7" font-weight="700">STEP EDGE</text>
+
+                  <g class="stair-body-carrier">
+                    <circle cx="95" cy="55" r="9" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+                    <line x1="95" y1="64" x2="95" y2="108" stroke="#2dd4bf" stroke-width="5" stroke-linecap="round" />
+                    <path d="M 95 75 Q 110 68 118 60" fill="none" stroke="#fde047" stroke-width="4" stroke-linecap="round" />
+                    <line x1="95" y1="108" x2="93" y2="134" stroke="#134e4a" stroke-width="5" stroke-linecap="round" />
+                    
+                    <g class="stair-ankle-lever">
+                      <circle cx="92" cy="125" r="3.5" fill="#38bdf8" />
+                      <line x1="82" y1="130" x2="100" y2="125" stroke="#fde047" stroke-width="5" stroke-linecap="round" />
+                      <circle cx="82" cy="130" r="3" fill="#f59e0b" />
+                      <line x1="98" y1="125" x2="106" y2="125" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+                    </g>
+                  </g>
+                </g>
+              </svg>
+
+              <!-- In-Place HUD Overlay -->
+              <div id="inPlaceHUD" class="hidden absolute inset-0 bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center p-3 text-center">
+                <div id="inPlacePhaseLabel" class="text-xs font-black tracking-widest uppercase text-sky-400 mb-1">
+                  HEEL SINK DEEP
+                </div>
+                <div id="inPlaceCountdown" class="text-6xl font-black text-white font-mono leading-none my-1">
+                  5
+                </div>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="text-[11px] bg-slate-900 border border-brand-500/40 text-brand-300 px-2 py-0.5 rounded font-mono font-bold" id="inPlaceSetRepBadge">
+                    SET 1/1 · REP 1/20
+                  </span>
+                </div>
+                <div id="inPlaceMicroCue" class="text-[11px] text-slate-300 font-semibold mt-2 px-2">
+                  Drop heels below shelf edge
+                </div>
+              </div>
+            </div>
+
+            <!-- Stage Cues -->
+            <div class="mt-2 text-center max-w-xl px-4">
+              <p id="inspectCue" class="text-sm font-semibold text-slate-100 leading-tight">
+                Sit on your chair with balls of feet perched on the elevated rail/shelf. Hold stool rungs behind hips. Sink heels 5s, then push up onto ballerina tippy-toes for 5s.
+              </p>
+              <div class="mt-1.5 flex items-center justify-center gap-4 text-xs font-bold text-slate-300">
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Non-weight bearing</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span> Zero knee flex required</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amberGold-400"></span> Hands locked low</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-300">Pacing:</span>
+              <span id="inspectTiming" class="text-brand-300 font-bold font-mono">5s Sink + 5s Press</span>
+            </div>
+            <button onclick="openWisdomModalForInspected()" class="text-amberGold-400 hover:text-amberGold-300 font-bold text-xs flex items-center gap-1">
+              <span>💡 Read Master's Insight</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: ROUTINE QUEUE -->
+      <section class="w-84 flex flex-col bg-slate-900/70 rounded-xl border border-slate-800 shrink-0 overflow-hidden shadow-inner">
+        <div class="p-3 border-b border-slate-800 flex items-center justify-between bg-slate-900">
+          <div>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-brand-300">Routine Queue</h2>
+            <div class="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5 font-mono font-semibold">
+              <span id="queueItemCount">0 items</span>
+              <span>•</span>
+              <span id="queueTotalDuration">0m 00s</span>
+            </div>
+          </div>
+          <button onclick="clearRoutineQueue()" class="text-xs text-rose-400 hover:text-rose-300 font-bold hover:underline">
+            Clear All
+          </button>
+        </div>
+
+        <div id="queueItemsList" class="flex-1 overflow-y-auto custom-scroll p-2.5 space-y-2"></div>
+
+        <div class="p-3 border-t border-slate-800 bg-slate-950 space-y-2.5">
+          <button onclick="startGuidedFlowSession()" class="w-full py-3 rounded-xl mac-gloss-btn text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-2 transition-all">
+            <span class="text-base">▶</span> START FULL ROUTINE FLOW
+          </button>
+
+          <div class="flex gap-2">
+            <button onclick="openSaveRoutineModal()" class="flex-1 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 flex items-center justify-center gap-1.5 transition-colors">
+              <span>💾</span> Save Routine
+            </button>
+            <button onclick="window.print()" class="flex-1 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 flex items-center justify-center gap-1.5 transition-colors">
+              <span>⎙</span> Print A4
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW 2: KIOSK CARDS -->
+    <div id="kioskView" class="hidden flex-1 flex flex-col overflow-hidden bg-slate-950/90 rounded-2xl border border-slate-800 p-5">
+      <div class="flex items-center justify-between pb-3.5 border-b border-slate-800 shrink-0">
+        <div>
+          <h2 class="text-xl font-extrabold text-white flex items-center gap-2">
+            <span>🏛</span> KIOSK SELECTION: THE 4 GATES OF VITALITY
+          </h2>
+          <p class="text-sm text-slate-300 mt-0.5">High-contrast text cards · Hover over any tile to view live movement animation</p>
+        </div>
+        <div class="flex gap-2 text-xs">
+          <button onclick="filterKioskGate('all')" class="kiosk-gate-btn px-4 py-1.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40 font-bold">All Gates</button>
+          <button onclick="filterKioskGate('gate1')" class="kiosk-gate-btn px-4 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 font-bold">Gate 1: The Root</button>
+          <button onclick="filterKioskGate('gate2')" class="kiosk-gate-btn px-4 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 font-bold">Gate 2: Iron Spine</button>
+          <button onclick="filterKioskGate('gate3')" class="kiosk-gate-btn px-4 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 font-bold">Gate 3: Ocean Breath</button>
+          <button onclick="filterKioskGate('gate4')" class="kiosk-gate-btn px-4 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 font-bold">Gate 4: Graduation</button>
+        </div>
+      </div>
+
+      <div id="kioskTileGrid" class="flex-1 overflow-y-auto custom-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-4 pr-1"></div>
+    </div>
+
+    <!-- VIEW 3: ACADEMY PROGRESS & DIPLOMA -->
+    <div id="academyView" class="hidden flex-1 flex flex-col overflow-y-auto custom-scroll p-6 bg-slate-950/90 rounded-2xl border border-slate-800">
+      <div class="max-w-4xl mx-auto w-full space-y-6 pb-8">
+        <div class="text-center space-y-2 border-b border-slate-800 pb-5">
+          <span class="text-xs font-bold uppercase tracking-widest text-amberGold-400 bg-amberGold-950/80 px-3.5 py-1.5 rounded-full border border-amberGold-500/40">
+            THE ANCIENT DAOYIN & VASCULAR ACADEMY
+          </span>
+          <h2 class="text-2xl font-serif font-black text-white tracking-wide mt-2">
+            Mastery of Seated Vitality & Venous Restoration
+          </h2>
+          <p class="text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+            "A tree dies from its roots; a man ages from his feet." Advance through the Four Sacred Gates to restore venous blood flow and claim your Diploma of Seated Mastery.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4">
+          <div class="mac-glass-card rounded-2xl p-4 text-center">
+            <div class="text-2xl mb-1">🌱</div>
+            <div class="text-xs font-bold text-emerald-400">GATE 1: THE ROOT</div>
+            <div class="text-sm text-slate-200 font-bold mt-1">Soleus Pump & Yongquan</div>
+            <div class="text-xs text-slate-400 mt-2 font-semibold">Status: <span class="text-emerald-400 font-bold">ACTIVE</span></div>
+          </div>
+          <div class="mac-glass-card rounded-2xl p-4 text-center">
+            <div class="text-2xl mb-1">⚓</div>
+            <div class="text-xs font-bold text-brand-300">GATE 2: IRON SPINE</div>
+            <div class="text-sm text-slate-200 font-bold mt-1">Daoyin Rear Staff Grip</div>
+            <div class="text-xs text-slate-400 mt-2 font-semibold">Status: <span class="text-brand-300 font-bold">UNLOCKED</span></div>
+          </div>
+          <div class="mac-glass-card rounded-2xl p-4 text-center">
+            <div class="text-2xl mb-1">🌊</div>
+            <div class="text-xs font-bold text-sky-400">GATE 3: OCEAN BREATH</div>
+            <div class="text-sm text-slate-200 font-bold mt-1">Thoracic Venous Siphon</div>
+            <div class="text-xs text-slate-400 mt-2 font-semibold">Status: <span class="text-sky-400 font-bold">PRACTICING</span></div>
+          </div>
+          <div class="mac-glass-card rounded-2xl p-4 text-center">
+            <div class="text-2xl mb-1">⚡</div>
+            <div class="text-xs font-bold text-amberGold-400">GATE 4: GRADUATION</div>
+            <div class="text-sm text-slate-200 font-bold mt-1">Sit-to-Stand Transfer</div>
+            <div class="text-xs text-slate-400 mt-2 font-semibold">Status: <span class="text-amberGold-400 font-bold">GRADUATING</span></div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-b from-amberGold-950/40 to-slate-900 border-2 border-amberGold-500/60 rounded-3xl p-8 text-center space-y-4 shadow-2xl relative">
+          <div class="text-xs font-mono tracking-widest text-amberGold-400 font-bold uppercase">OFFICIAL CERTIFICATION OF PRACTICE</div>
+          <h3 class="text-2xl font-serif font-black text-white">Honorary Diploma of Seated Daoyin & Vascular Vitality</h3>
+          <p class="text-sm text-slate-200 max-w-xl mx-auto leading-relaxed">
+            Awarded for demonstrating true physical mastery over gravity, venous hypertension, and chair-bound stagnation through dedicated practice of the Custom Height Stool, Shelf, and Daoyin Spinal Rooting.
+          </p>
+          <div class="pt-3 flex justify-center">
+            <button onclick="window.print()" class="px-6 py-2.5 rounded-xl bg-amberGold-500 hover:bg-amberGold-400 text-slate-950 font-black text-sm shadow-xl transition-all flex items-center gap-2">
+              <span>🎓</span> Print Official Diploma (A4)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: FULL GUIDED PACER RUNNER -->
+    <div id="activePacerView" class="hidden absolute inset-0 z-40 bg-slate-950/95 backdrop-blur-md flex flex-col p-6 overflow-hidden">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="relative flex h-3.5 w-3.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
+          </span>
+          <div>
+            <div class="text-xs text-emerald-400 font-extrabold uppercase tracking-wider">FULL ROUTINE GUIDED FLOW</div>
+            <h3 id="activeMoveTitle" class="text-xl font-extrabold text-white">Bar Stool & Shelf 20-Rep Ballerina Pump</h3>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-right">
+            <span class="text-xs text-slate-400">Step</span>
+            <span id="activeStepIndex" class="text-sm font-bold text-brand-300 ml-1">1 of 1</span>
+          </div>
+          <button onclick="exitGuidedFlow()" class="px-5 py-2 rounded-xl mac-stop-btn text-white text-xs font-black shadow-lg transition-colors flex items-center gap-1.5">
+            <span>⏹</span> STOP & EXIT
+          </button>
+        </div>
+      </div>
+
+      <div class="flex-1 flex flex-col items-center justify-center relative">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="px-4 py-1 rounded-full bg-slate-900 border border-brand-500/40 text-brand-300 text-xs font-bold tracking-wide flex items-center gap-2 shadow-lg">
+            <span>SET</span>
+            <span id="activeSetBadge" class="text-white text-xs font-mono bg-slate-800 px-2.5 py-0.5 rounded">1 / 1</span>
+          </div>
+          <div class="px-5 py-1.5 rounded-full bg-slate-900 border border-amberGold-500 text-amberGold-400 text-sm font-bold tracking-wide flex items-center gap-2 shadow-lg">
+            <span>REP</span>
+            <span id="activeRepBadge" class="text-slate-950 text-base font-black font-mono bg-amberGold-400 px-3 py-0.5 rounded">1 / 20</span>
+          </div>
+        </div>
+
+        <div class="relative flex items-center justify-center">
+          <div class="w-72 h-72 rounded-full bg-slate-900 border-4 border-brand-500/60 flex flex-col items-center justify-center relative z-10 shadow-2xl p-4">
+            <div id="livePhaseLabel" class="text-xs font-black tracking-widest uppercase text-sky-400 mb-1">
+              HEEL SINK DEEP
+            </div>
+            
+            <div id="livePhaseCountdown" class="text-7xl font-black text-white tracking-tighter font-mono">
+              5
+            </div>
+            
+            <div id="liveMicroCue" class="text-xs text-slate-300 font-semibold text-center mt-2 px-2">
+              Drop heels below shelf edge
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 text-center max-w-lg px-4">
+          <div id="liveWisdomBanner" class="p-3 rounded-xl bg-amberGold-950/70 border border-amberGold-500/40 text-sm text-amberGold-200 font-medium flex items-center justify-center gap-2">
+            <span>💡</span>
+            <span id="liveWisdomText">"The Soleus is your second heart: pumping up to 60ml of blood upward every minute."</span>
+          </div>
+        </div>
+
+        <div class="w-80 h-3 bg-slate-850 rounded-full mt-5 overflow-hidden border border-slate-700">
+          <div id="liveStepProgressBar" class="h-full bg-gradient-to-r from-brand-500 via-sky-400 to-amberGold-400 transition-all duration-300" style="width: 10%;"></div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-800 flex items-center justify-between shrink-0">
+        <button onclick="skipToPreviousStep()" class="text-xs font-bold text-slate-400 hover:text-white px-3 py-1.5 rounded hover:bg-slate-800 flex items-center gap-1">
+          <span>⏮</span> Previous Move
+        </button>
+        <div class="flex items-center gap-3">
+          <button onclick="togglePacerPause()" id="btnPacerPause" class="px-6 py-2 rounded-xl mac-gloss-btn text-white font-bold text-xs transition-colors">
+            ⏸ Pause
+          </button>
+          <button onclick="exitGuidedFlow()" class="px-6 py-2 rounded-xl mac-stop-btn text-white font-bold text-xs transition-colors">
+            ⏹ Stop Move
+          </button>
+          <button onclick="skipToNextStep()" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition-colors">
+            Skip ⏭
+          </button>
+        </div>
+        <span class="text-xs text-slate-400 font-mono font-bold" id="liveSessionRemaining">Total left: 3m 20s</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =========================================================
+       MODALS
+       ========================================================= -->
+  <!-- Height Information Modal -->
+  <div id="heightInfoModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="mac-glass-card rounded-3xl p-7 w-full max-w-lg shadow-2xl space-y-4">
+      <div class="flex justify-between items-start border-b border-slate-700/60 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">📐</span>
+          <div>
+            <span class="text-xs text-amberGold-400 font-bold uppercase tracking-widest">Ergonomics & Mechanics</span>
+            <h3 class="text-lg font-bold text-white">Why Chair & Rail Height Matters</h3>
+          </div>
+        </div>
+        <button onclick="closeHeightInfoModal()" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+      </div>
+
+      <div class="space-y-3 text-xs leading-relaxed text-slate-200">
+        <p><strong>The 670mm High Stool Advantage:</strong> Sitting with your hips higher than your knees opens the femoral triangle, reducing pressure on the femoral vein and allowing blood to return with minimal resistance.</p>
+        <p><strong>The 370mm Foot Rail / Shelf Elevation:</strong> Elevating your feet onto a rail or shelf levels the lower leg, allowing the ankle to pivot freely without requiring knee flexion or grinding surgical hardware.</p>
+        <p><strong>Standard 450mm Chairs:</strong> If practicing on a dining chair, setting the rail to 0mm (floor) or 180mm (step riser) maintains safe joint angles.</p>
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button onclick="closeHeightInfoModal()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs">
+          Understood
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wisdom Modal -->
+  <div id="wisdomModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="mac-glass-card rounded-3xl p-7 w-full max-w-lg shadow-2xl space-y-5">
+      <div class="flex justify-between items-start border-b border-slate-700/60 pb-3.5">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">💡</span>
+          <div>
+            <span class="text-xs text-amberGold-400 font-extrabold uppercase tracking-widest">Master's Revelation</span>
+            <h3 id="wisdomModalTitle" class="text-xl font-bold text-white mt-0.5">The Second Heart Revelation</h3>
+          </div>
+        </div>
+        <button onclick="closeWisdomModal()" class="text-slate-400 hover:text-white text-2xl font-bold leading-none">&times;</button>
+      </div>
+
+      <div class="space-y-4 text-sm leading-relaxed text-slate-200">
+        <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1.5">
+          <strong class="text-emerald-400 block uppercase text-xs tracking-wider font-extrabold">🔬 Modern Vascular Science</strong>
+          <p id="wisdomModalScience" class="text-base text-slate-200 leading-normal"></p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1.5">
+          <strong class="text-amberGold-400 block uppercase text-xs tracking-wider font-extrabold">☯ Classical Taoist Wisdom</strong>
+          <p id="wisdomModalAncient" class="text-base text-slate-200 leading-normal"></p>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button onclick="closeWisdomModal()" class="px-6 py-2.5 rounded-xl bg-amberGold-500 hover:bg-amberGold-400 text-slate-950 font-black text-sm shadow-lg">
+          Got It, Master
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Routine Modal -->
+  <div id="saveRoutineModal" class="hidden fixed inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="mac-glass-card rounded-2xl p-5 w-full max-w-sm shadow-2xl">
+      <div class="flex justify-between items-start mb-3 border-b border-slate-700 pb-2">
+        <h3 class="text-base font-bold text-white flex items-center gap-1.5">
+          <span>💾</span> Save Custom Routine
+        </h3>
+        <button onclick="closeSaveModal()" class="text-slate-400 hover:text-white">&times;</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-bold mb-1">Routine Name</label>
+          <input type="text" id="saveRoutineNameInput" placeholder="e.g. Morning 20-Rep Ulcer Flow" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-white font-bold focus:outline-none focus:border-brand-500 text-sm" />
+        </div>
+        <p class="text-xs text-slate-400">Saves your exact sequence, reps, sets, and custom chair/rail dimensions to this computer.</p>
+      </div>
+
+      <div class="flex justify-end gap-2 mt-4 pt-3 border-t border-slate-700">
+        <button onclick="closeSaveModal()" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold">Cancel</button>
+        <button onclick="confirmSaveRoutine()" class="px-4 py-1.5 rounded-lg mac-gloss-btn text-white text-xs font-bold shadow">Save Routine</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print Clinical Sheet (A4) -->
+  <div id="printClinicSheet" class="hidden p-8 max-w-3xl mx-auto text-black bg-white">
+    <div class="border-b-2 border-slate-900 pb-3 mb-4 flex justify-between items-end">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">Chair Tai Chi & Venous Circulation Protocol</h1>
+        <p class="text-xs text-slate-600">Adaptive Non-Weight Bearing Flow & Vascular Decompression</p>
+      </div>
+      <div class="text-right text-xs text-slate-500">
+        <div>Routine: <strong id="printRoutineTitle">Active Flow</strong></div>
+        <div id="printDateStamp">Date: Today</div>
+      </div>
+    </div>
+
+    <div class="p-3 bg-slate-100 rounded-lg mb-4 text-xs leading-relaxed border border-slate-300">
+      <div class="font-bold text-slate-900 mb-1">Prescribed Clinical Biomechanics:</div>
+      <ul class="list-disc pl-4 space-y-1 text-slate-700">
+        <li><strong>Configured Dimensions:</strong> <span id="printSeatHeight">670mm</span> Chair Height with <span id="printShelfHeight">370mm</span> Rail/Shelf Height. Hands anchored low behind hips or grasping a horizontal Daoyin staff to lock the lumbar spine in neutral.</li>
+        <li><strong>Venous Return Protocol:</strong> 5s deep heel sink below shelf edge followed by 5s ballerina tippy-toe rise.</li>
+        <li><strong>Graduation Phase:</strong> 1–2 inch leg hover holds and progressive sit-to-stand unweighting transfers.</li>
+      </ul>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="text-sm font-bold uppercase tracking-wider border-b border-slate-300 pb-1 mb-2 text-slate-800">Prescribed Exercise Sequence</h2>
+      <div id="printQueueContainer" class="space-y-2"></div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT CONTROLLER -->
+  <script>
+    const MASTER_TEMPLATES = [
+      {
+        id: 'stool_ballerina',
+        gate: 'gate1',
+        gateName: 'Gate 1: The Root',
+        name: 'Bar Stool & Shelf 20-Rep Ballerina Pump',
+        mode: 'stool',
+        badge: 'Venous Return',
+        subBadge: 'Soleus Muscle Pump',
+        animClass: 'anim-stool-pump',
+        hasStaff: true,
+        defaultReps: 20,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 10,
+        cue: 'Sit on your chair with balls of feet on elevated rail. Hold chair low behind hips. Sink heels 5s, then push high onto ballerina tippy-toes for 5s.',
+        microSink: '5s Deep Heel Sink: Drop heels below shelf edge',
+        microPeak: '5s Ballerina Press: Stand tall on tippy-toes',
+        target: 'Soleus calf pump, popliteal venous return, ulcer prevention',
+        science: 'Deep in your calf sits the soleus muscle. Every time you press into ballerina tippy-toes, it mechanically compresses the deep venous sinuses, overcoming gravity and pumping 60ml of pooled, stagnant fluid straight back up past knee hardware.',
+        ancient: '“A tree dies from its roots; a man ages from his feet.” Stimulating the Yongquan (Bubbling Spring / Kidney 1) point on the ball of the foot awakens lower-body Qi and grounds the spirit without joint torque.'
+      },
+      {
+        id: 'toe_splay',
+        gate: 'gate1',
+        gateName: 'Gate 1: The Root',
+        name: 'Plantar Toe Splay & Dragon Claws',
+        mode: 'stool',
+        badge: 'Plantar Flow',
+        subBadge: 'Capillary Tissue Healing',
+        animClass: 'anim-stool-pump',
+        hasStaff: true,
+        defaultReps: 10,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 10,
+        cue: 'Balls of feet on shelf. Splay all 5 toes wide like a fan for 5s, then gently curl toes into the shelf wood for 5s.',
+        microSink: 'Splay toes wide like an open fan',
+        microPeak: 'Gently curl toe pads into shelf wood',
+        target: 'Deep plantar venous arch, micro-capillary tissue oxygenation',
+        science: 'Splaying and clawing the toes stimulates the plantar venous plexus in the sole, pumping blood through micro-capillaries to heal skin tissue.',
+        ancient: 'Awakening the Dragon Claws. Energizing the terminal Jing-Well acupuncture points at the tips of the toes.'
+      },
+      {
+        id: 'stair_ledge',
+        gate: 'gate1',
+        gateName: 'Gate 1: The Root',
+        name: 'Stair Ledge 20-Rep Ballerina Pump',
+        mode: 'step',
+        badge: 'Standing Step Edge',
+        subBadge: 'Gravity Bodyweight Decompression',
+        animClass: 'anim-stair-pump',
+        hasStaff: false,
+        defaultReps: 20,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 15,
+        cue: 'Stand on a step ledge with balls of feet on the edge while holding handrails. Sink heels down as far as they can for 5s, then push up onto tippy-toes for 5s.',
+        microSink: '5s Deep Hang: Drop heels below step level',
+        microPeak: '5s Ballerina Rise: Stand tall on tippy-toes',
+        target: 'Achilles stretch, full gravity soleus pump, venous drainage',
+        science: 'Using bodyweight gravity on a step edge provides maximal passive Achilles stretch and eccentric soleus recruitment.',
+        ancient: 'Grounded rooting into the stone. Opening the bladder meridian that runs down the spine and back of the calf.'
+      },
+      {
+        id: 'daoyin_rear_lock',
+        gate: 'gate2',
+        gateName: 'Gate 2: Iron Spine',
+        name: 'Daoyin Rear Staff Alignment & Low Grip Root',
+        mode: 'stool',
+        badge: 'Lumbar Protection',
+        subBadge: 'Mingmen Gate Alignment',
+        animClass: 'anim-taichi-breath',
+        hasStaff: true,
+        defaultReps: 8,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 0,
+        cue: 'Grasp the low chair frame behind your hips or hold a wooden staff horizontally across your lower back. Sit tall, broaden the shoulders, and breathe deeply.',
+        microSink: 'Inhale into Mingmen (lower back fire)',
+        microPeak: 'Exhale sinking shoulders and elbows',
+        target: 'Pelvic stabilization, lumbar de-rotation, protecting knee hardware',
+        science: 'Locking the hands low behind the hips anchors the pelvis and stops posterior lumbar tilting, allowing the hip flexors and quads to work without shear stress on knee implants.',
+        ancient: '“Iron Bar Behind the Spine.” Sealing the Mingmen (Gate of Life) to prevent core energy leakage while rooted firmly on the seat.'
+      },
+      {
+        id: 'commencing_breath',
+        gate: 'gate3',
+        gateName: 'Gate 3: Ocean Breath',
+        name: 'Seated Commencing Form (Thoracic Suction)',
+        mode: 'stool',
+        badge: 'Mind-Body Tai Chi',
+        subBadge: 'Thoracic Vacuum for Venous Return',
+        animClass: 'anim-taichi-breath',
+        hasStaff: false,
+        defaultReps: 6,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 0,
+        cue: 'Sit tall on stool. Inhale floating wrists to chest level; exhale slowly pressing palms down toward lap. Smooth rhythmic diaphragmatic breathing.',
+        microSink: '🌬 INHALE: Float wrists to chest level',
+        microPeak: '🌊 EXHALE: Sink palms softly toward lap',
+        target: 'Negative thoracic pressure drawing venous blood upwards to the heart',
+        science: 'When the diaphragm contracts downward on a deep inhale, it creates a powerful negative pressure (vacuum) in the chest cavity that draws blood up through the vena cava from the legs.',
+        ancient: 'Tu Na breathing (expelling the stale, drawing the fresh). Harmonizing the upper chest ocean with the lower abdominal Dan Tian.'
+      },
+      {
+        id: 'grasp_birds_tail',
+        gate: 'gate3',
+        gateName: 'Gate 3: Ocean Breath',
+        name: 'Grasp the Bird’s Tail (Seated 4-Gates)',
+        mode: 'stool',
+        badge: 'Yang Style Core',
+        subBadge: 'Ward-Off, Rollback, Press, Push',
+        animClass: 'anim-taichi-breath',
+        hasStaff: false,
+        defaultReps: 6,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 0,
+        cue: 'Form a rounded arm frame (Ward-off), draw back to ribs (Rollback), join palms to expand (Press), then sink palms down and forward (Push). Smooth breath sync.',
+        microSink: 'Ward-off and Rollback smoothly',
+        microPeak: 'Press and Push palms forward',
+        target: 'Scapular rhythm, thoracic mobility, lymphatic pumping',
+        science: 'Moving through the 4 traditional gates rhythmically expands and contracts the ribcage and axillary lymphatic network without straining the lower limbs.',
+        ancient: 'Peng, Lu, Ji, An. The quintessential 4 energetic gates of Yang Style Tai Chi, harmonizing Yin and Yang through the arms.'
+      },
+      {
+        id: 'white_crane',
+        gate: 'gate3',
+        gateName: 'Gate 3: Ocean Breath',
+        name: 'White Crane Spreads Its Wings (Seated)',
+        mode: 'stool',
+        badge: 'Fascial Opening',
+        subBadge: 'Diagonal Torso Expansion',
+        animClass: 'anim-taichi-breath',
+        hasStaff: false,
+        defaultReps: 8,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 0,
+        cue: 'One palm presses gently downward past the hip while the other floats up diagonally to temple height. Feel the diagonal stretch across the ribs.',
+        microSink: 'Draw palms across center line',
+        microPeak: 'Expand wings diagonally open',
+        target: 'Diagonal myofascial opening, ribcage release, axillary drainage',
+        science: 'Opens diagonal spiral fascial lines across the torso, relieving diaphragmatic compression and facilitating thoracic duct lymph flow.',
+        ancient: 'Bai He Liang Chi. Cultivating lightness and vertical poise; opening the heart and lung channels through expansive posture.'
+      },
+      {
+        id: 'cloud_hands',
+        gate: 'gate3',
+        gateName: 'Gate 3: Ocean Breath',
+        name: 'Cloud Hands Seated Rib Harmonizer',
+        mode: 'stool',
+        badge: 'Spine & Lymph Flow',
+        subBadge: 'Gentle Upper-Torso Rotation',
+        animClass: 'anim-cloud-hands',
+        hasStaff: false,
+        defaultReps: 8,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 0,
+        cue: 'Hips and knees locked steady on stool. Gently rotate ribcage 15 degrees left and right, sweeping palms smoothly across eye level like clouds.',
+        microSink: 'Sweep left gently across eye level',
+        microPeak: 'Sweep right gently across eye level',
+        target: 'Pelvic lymphatic drainage, spinal mobility, zero leg strain',
+        science: 'Torso rotation wrings out the thoracic duct and pelvic lymph nodes, clearing fluid stagnation around the femoral vein.',
+        ancient: 'Yun Shou (Wave Hands Like Clouds). Fluid rotational Qi circulation where the waist acts like an axle while the hips remain rooted.'
+      },
+      {
+        id: 'brush_knee',
+        gate: 'gate3',
+        gateName: 'Gate 3: Ocean Breath',
+        name: 'Brush Knee and Twist Push (Seated)',
+        mode: 'stool',
+        badge: 'Rotational Core',
+        subBadge: 'Oblique & Psoas Integration',
+        animClass: 'anim-cloud-hands',
+        hasStaff: false,
+        defaultReps: 8,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 0,
+        cue: 'Sweep clearing hand horizontally across the lap while delivering a soft forward palm push with the other hand. Keep hips firmly pinned to seat.',
+        microSink: 'Brush hand across lap smoothly',
+        microPeak: 'Deliver soft forward palm press',
+        target: 'Oblique core strength, psoas activation, pelvic alignment',
+        science: 'Trains rotary core activation while keeping the pelvis stabilized, ensuring no rotational shear forces reach knee implants.',
+        ancient: 'Lou Xi Ao Bu. Harmonizing the lower clearing action with the upper advancing palm in complete structural unison.'
+      },
+      {
+        id: 'grad_float',
+        gate: 'gate4',
+        gateName: 'Gate 4: Graduation',
+        name: 'Stage 1: 1–2" Leg Float Hold',
+        mode: 'stool',
+        badge: 'Graduation Level 1',
+        subBadge: 'Quad & Knee Stability (Zero Flex)',
+        animClass: 'anim-leg-hover',
+        hasStaff: true,
+        defaultReps: 6,
+        defaultSets: 2,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 15,
+        cue: 'Hands locked low behind stool to brace spine. Float foot 1 to 2 inches off the desk shelf. Hold steady in the air for 5 seconds without knee flexion, then rest.',
+        microSink: '🍃 REST & BREATHE: Lower heel softly to shelf',
+        microPeak: '⚡ FLOAT 1-2 INCHES: Sustain quad hold in air',
+        target: 'Vastus Medialis (VMO) & hip flexor engagement with zero knee flexion',
+        science: 'Holding an isometric 1–2" leg float fires the vastus medialis without rotating or grinding the femoral-tibial hardware inside the knee joint, reinforcing the patellar tendon safely.',
+        ancient: '“Golden Rooster Stands on One Leg” (Jin Ji Du Li). Achieving lightness and floatation through rooted stability behind the spine.'
+      },
+      {
+        id: 'grad_hip_hinge',
+        gate: 'gate4',
+        gateName: 'Gate 4: Graduation',
+        name: 'Stage 2: Nose-Over-Toes Hip Hinge Transfer',
+        mode: 'stool',
+        badge: 'Graduation Level 2',
+        subBadge: 'Center of Gravity Shift',
+        animClass: 'anim-taichi-breath',
+        hasStaff: false,
+        defaultReps: 8,
+        defaultSets: 1,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 10,
+        cue: 'Feet on floor or low rail. Keeping spine completely straight, hinge from hips forward until chest is over knees. Feel weight shift into feet without standing.',
+        microSink: 'Hinge forward: transfer weight to feet',
+        microPeak: 'Press through hips: return tall to backrest',
+        target: 'Gluteal recruitment, ankle load tolerance, balance recovery',
+        science: 'Prepares the nervous system and hip extensors for standing by transferring center of mass forward over base of support with zero joint impact.',
+        ancient: 'Rooting the Center of Gravity. Moving the central equilibrium point (Zhong Ding) smoothly between Yin (seated) and Yang (feet).'
+      },
+      {
+        id: 'grad_buttock_hover',
+        gate: 'gate4',
+        gateName: 'Gate 4: Graduation',
+        name: 'Stage 3: 1-Inch Buttock Hover (Supported)',
+        mode: 'stool',
+        badge: 'Graduation Level 3',
+        subBadge: 'Partial Bodyweight Unweighting',
+        animClass: 'anim-stair-pump',
+        hasStaff: false,
+        defaultReps: 5,
+        defaultSets: 2,
+        defaultSinkSec: 5,
+        defaultPeakSec: 5,
+        defaultRestBetweenSets: 15,
+        cue: 'Hands on sturdy desk or walking stick. Shift weight into feet and unweight buttocks 1 inch off the seat for 5s. Lower softly and rest.',
+        microSink: 'Lower softly onto seat and relax',
+        microPeak: 'Hover buttocks 1 inch off seat (5s hold)',
+        target: 'Functional sit-to-stand strength, quad power, knee stabilization',
+        science: 'Trains concentric and isometric knee extensor capacity under hand support, building the strength needed for independent standing.',
+        ancient: 'Stillness Within Movement. Holding the suspended posture like iron wrapped in cotton.'
+      }
+    ];
+
+    const SYSTEM_PRESETS = {
+      preset_venous_20: {
+        name: '🩸 20-Rep Venous Pump (Standard)',
+        items: [
+          { templateId: 'commencing_breath', reps: 4, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 0 },
+          { templateId: 'stool_ballerina', reps: 20, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 10 },
+          { templateId: 'toe_splay', reps: 8, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 0 }
+        ]
+      },
+      preset_taichi_flow: {
+        name: '☯ Complete Seated Tai Chi Suite',
+        items: [
+          { templateId: 'commencing_breath', reps: 6, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 0 },
+          { templateId: 'grasp_birds_tail', reps: 6, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 0 },
+          { templateId: 'white_crane', reps: 6, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 0 },
+          { templateId: 'cloud_hands', reps: 8, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 0 },
+          { templateId: 'brush_knee', reps: 6, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 0 }
+        ]
+      },
+      preset_grad_progression: {
+        name: '⚡ Full 4-Stage Graduation Sequence',
+        items: [
+          { templateId: 'stool_ballerina', reps: 10, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 10 },
+          { templateId: 'grad_float', reps: 6, sets: 2, sinkSec: 5, peakSec: 5, restBetweenSets: 15 },
+          { templateId: 'grad_hip_hinge', reps: 6, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 10 },
+          { templateId: 'grad_buttock_hover', reps: 5, sets: 1, sinkSec: 5, peakSec: 5, restBetweenSets: 15 }
+        ]
+      }
+    };
+
+    let currentlyInspected = MASTER_TEMPLATES[0];
+    let customSeatHeight = 670;
+    let customShelfHeight = 370;
+    let centerReps = 20;
+    let centerSets = 1;
+    let userRoutineQueue = [];
+    let currentRoutineKey = 'preset_venous_20';
+    let activeKioskGate = 'all';
+
+    // State for In-Place Practice
+    let isInPlaceRunning = false;
+    let inPlaceTimer = null;
+    let inPlaceSet = 1;
+    let inPlaceRep = 1;
+    let inPlacePhase = 'sink';
+    let inPlaceSecondsLeft = 5;
+
+    // State for Full Queue Runner
+    let isFlowRunning = false;
+    let isFlowPaused = false;
+    let flowQueueIndex = 0;
+    let activeFlowQueue = [];
+    let currentSetNumber = 1;
+    let currentRepNumber = 1;
+    let currentPhase = 'sink';
+    let phaseSecondsRemaining = 5;
+    let flowInterval = null;
+
+    let audioMuted = false;
+    let webAudioContext = null;
+
+    function initWebAudio() {
+      if (!webAudioContext) {
+        webAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playTone(freq, duration = 0.9) {
+      if (audioMuted) return;
+      try {
+        initWebAudio();
+        if (webAudioContext.state === 'suspended') webAudioContext.resume();
+        const now = webAudioContext.currentTime;
+        const osc = webAudioContext.createOscillator();
+        const gain = webAudioContext.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+        osc.connect(gain);
+        gain.connect(webAudioContext.destination);
+        osc.start(now);
+        osc.stop(now + duration);
+      } catch (e) {}
+    }
+
+    function toggleSoundSystem() {
+      audioMuted = !audioMuted;
+      document.getElementById('audioIcon').innerText = audioMuted ? '🔕' : '🔔';
+      document.getElementById('audioText').innerText = audioMuted ? 'Muted' : 'Chimes On';
+    }
+
+    function switchViewMode(mode) {
+      if (isInPlaceRunning) stopInPlacePractice();
+      if (isFlowRunning) exitGuidedFlow();
+
+      document.getElementById('studioView').classList.add('hidden');
+      document.getElementById('kioskView').classList.add('hidden');
+      document.getElementById('academyView').classList.add('hidden');
+
+      document.getElementById('viewBtnStudio').className = 'px-4 py-1.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition-all flex items-center gap-2';
+      document.getElementById('viewBtnKiosk').className = 'px-4 py-1.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition-all flex items-center gap-2';
+      document.getElementById('viewBtnAcademy').className = 'px-4 py-1.5 rounded-lg text-sm font-bold text-amberGold-400 hover:text-amberGold-300 transition-all flex items-center gap-2';
+
+      if (mode === 'studio') {
+        document.getElementById('studioView').classList.remove('hidden');
+        document.getElementById('viewBtnStudio').className = 'px-4 py-1.5 rounded-lg text-sm font-bold text-brand-300 bg-brand-950 border border-brand-500/40 transition-all flex items-center gap-2';
+      } else if (mode === 'kiosk') {
+        document.getElementById('kioskView').classList.remove('hidden');
+        document.getElementById('viewBtnKiosk').className = 'px-4 py-1.5 rounded-lg text-sm font-bold text-brand-300 bg-brand-950 border border-brand-500/40 transition-all flex items-center gap-2';
+        renderKioskCards();
+      } else if (mode === 'academy') {
+        document.getElementById('academyView').classList.remove('hidden');
+        document.getElementById('viewBtnAcademy').className = 'px-4 py-1.5 rounded-lg text-sm font-bold text-amberGold-400 bg-amberGold-950 border border-amberGold-500/40 transition-all flex items-center gap-2';
+      }
+    }
+
+    /* CUSTOM ERGONOMIC HEIGHT ADJUSTER */
+    function setSeatPreset(mm) {
+      customSeatHeight = mm;
+      document.getElementById('seatHeightInput').value = mm;
+      updateCustomHeights();
+    }
+
+    function setShelfPreset(mm) {
+      customShelfHeight = mm;
+      document.getElementById('shelfHeightInput').value = mm;
+      updateCustomHeights();
+    }
+
+    function updateCustomHeights() {
+      customSeatHeight = parseInt(document.getElementById('seatHeightInput').value) || 670;
+      customShelfHeight = parseInt(document.getElementById('shelfHeightInput').value) || 370;
+
+      // Update Header & Badge
+      document.getElementById('headerSetupBadge').innerText = `${customSeatHeight}mm Seat · ${customShelfHeight}mm Rail · Daoyin Anchor`;
+      document.getElementById('inspectBadge').innerText = `Chair (${customSeatHeight}mm) & Rail (${customShelfHeight}mm)`;
+
+      // Dynamically Shift SVG Elements vertically
+      const seatY = 155 - ((customSeatHeight / 670) * 60); // calculate visual level
+      const shelfY = 155 - ((customShelfHeight / 370) * 27);
+
+      document.getElementById('svgSeatPath').setAttribute('d', `M 45 ${seatY} L 82 ${seatY}`);
+      document.getElementById('svgStoolLeg1').setAttribute('y1', seatY);
+      document.getElementById('svgStoolLeg2').setAttribute('y1', seatY);
+      document.getElementById('svgSeatLabel').setAttribute('y', seatY - 5);
+      document.getElementById('svgSeatLabel').textContent = `${customSeatHeight}mm SEAT`;
+
+      document.getElementById('svgShelfRect').setAttribute('y', shelfY - 7);
+      document.getElementById('svgShelfLabel').setAttribute('y', shelfY - 12);
+      document.getElementById('svgShelfLabel').textContent = `${customShelfHeight}mm SHELF`;
+
+      updatePrintSheet();
+    }
+
+    function openHeightInfoModal() {
+      document.getElementById('heightInfoModal').classList.remove('hidden');
+    }
+    function closeHeightInfoModal() {
+      document.getElementById('heightInfoModal').classList.add('hidden');
+    }
+
+    /* STEPPERS */
+    function adjustCenterReps(delta) {
+      centerReps = Math.max(0, Math.min(100, centerReps + delta));
+      document.getElementById('centerRepsDisplay').innerText = centerReps;
+    }
+
+    function adjustCenterSets(delta) {
+      centerSets = Math.max(1, Math.min(10, centerSets + delta));
+      document.getElementById('centerSetsDisplay').innerText = centerSets;
+    }
+
+    /* IN-PLACE PRACTICE */
+    function togglePlayThisMoveInPlace() {
+      if (isInPlaceRunning) {
+        stopInPlacePractice();
+      } else {
+        startInPlacePractice();
+      }
+    }
+
+    function startInPlacePractice() {
+      if (!currentlyInspected) return;
+      const targetReps = centerReps > 0 ? centerReps : currentlyInspected.defaultReps;
+      centerReps = targetReps;
+      document.getElementById('centerRepsDisplay').innerText = centerReps;
+
+      initWebAudio();
+      isInPlaceRunning = true;
+      inPlaceSet = 1;
+      inPlaceRep = 1;
+      inPlacePhase = 'sink';
+      inPlaceSecondsLeft = currentlyInspected.defaultSinkSec;
+
+      const btn = document.getElementById('centerPlayBtn');
+      btn.className = 'px-5 py-2 rounded-xl mac-stop-btn text-white font-black text-xs shadow-lg transition-all flex items-center gap-1.5';
+      document.getElementById('centerPlayBtnIcon').innerText = '⏹';
+      document.getElementById('centerPlayBtnText').innerText = 'STOP MOVE';
+
+      document.getElementById('inPlaceHUD').classList.remove('hidden');
+      updateInPlaceDisplay();
+      playTone(330, 0.8);
+
+      clearInterval(inPlaceTimer);
+      inPlaceTimer = setInterval(() => {
+        inPlaceSecondsLeft--;
+
+        if (inPlaceSecondsLeft <= 0) {
+          if (inPlacePhase === 'sink') {
+            inPlacePhase = 'peak';
+            inPlaceSecondsLeft = currentlyInspected.defaultPeakSec;
+            playTone(660, 0.6);
+          } else {
+            inPlaceRep++;
+            if (inPlaceRep > centerReps) {
+              inPlaceSet++;
+              if (inPlaceSet > centerSets) {
+                playTone(528, 1.5);
+                alert('Practice set complete! Well done.');
+                stopInPlacePractice();
+                return;
+              }
+              inPlaceRep = 1;
+            }
+            inPlacePhase = 'sink';
+            inPlaceSecondsLeft = currentlyInspected.defaultSinkSec;
+            playTone(330, 0.8);
+          }
+        }
+        updateInPlaceDisplay();
+      }, 1000);
+    }
+
+    function updateInPlaceDisplay() {
+      document.getElementById('inPlaceCountdown').innerText = inPlaceSecondsLeft;
+      document.getElementById('inPlaceSetRepBadge').innerText = `SET ${inPlaceSet}/${centerSets} · REP ${inPlaceRep}/${centerReps}`;
+
+      if (inPlacePhase === 'sink') {
+        document.getElementById('inPlacePhaseLabel').innerText = currentlyInspected.id.includes('grad') ? 'REST ON SHELF' : 'HEEL SINK DEEP';
+        document.getElementById('inPlacePhaseLabel').className = 'text-xs font-black tracking-widest uppercase text-sky-400 mb-1';
+        document.getElementById('inPlaceMicroCue').innerText = currentlyInspected.microSink;
+      } else {
+        document.getElementById('inPlacePhaseLabel').innerText = currentlyInspected.id.includes('grad') ? 'FLOAT 1–2" HOLD' : 'BALLERINA PRESS';
+        document.getElementById('inPlacePhaseLabel').className = 'text-xs font-black tracking-widest uppercase text-amberGold-400 mb-1';
+        document.getElementById('inPlaceMicroCue').innerText = currentlyInspected.microPeak;
+      }
+    }
+
+    function stopInPlacePractice() {
+      clearInterval(inPlaceTimer);
+      inPlaceTimer = null;
+      isInPlaceRunning = false;
+
+      const btn = document.getElementById('centerPlayBtn');
+      btn.className = 'px-5 py-2 rounded-xl mac-gloss-btn text-white font-black text-xs shadow-lg transition-all flex items-center gap-1.5';
+      document.getElementById('centerPlayBtnIcon').innerText = '▶';
+      document.getElementById('centerPlayBtnText').innerText = 'PLAY THIS MOVE';
+
+      document.getElementById('inPlaceHUD').classList.add('hidden');
+    }
+
+    /* FULL QUEUE RUNNER */
+    function startGuidedFlowSession() {
+      if (userRoutineQueue.length === 0) return alert('Please add at least one exercise to your routine.');
+      if (isInPlaceRunning) stopInPlacePractice();
+      initWebAudio();
+      activeFlowQueue = [...userRoutineQueue];
+      isFlowRunning = true;
+      isFlowPaused = false;
+      flowQueueIndex = 0;
+      document.getElementById('activePacerView').classList.remove('hidden');
+      loadActiveFlowStep(0);
+    }
+
+    function loadActiveFlowStep(stepIdx) {
+      if (stepIdx >= activeFlowQueue.length) {
+        playTone(528, 1.5);
+        alert('Routine Complete! Venous circulation elevated.');
+        exitGuidedFlow();
+        return;
+      }
+
+      flowQueueIndex = stepIdx;
+      const current = activeFlowQueue[stepIdx];
+      currentSetNumber = 1;
+      currentRepNumber = 1;
+      currentPhase = 'sink';
+      phaseSecondsRemaining = current.sinkSec;
+
+      document.getElementById('activeMoveTitle').innerText = current.name;
+      document.getElementById('activeStepIndex').innerText = `${stepIdx + 1} of ${activeFlowQueue.length}`;
+      
+      playTone(330, 0.8);
+      updateLivePacerDisplay();
+
+      clearInterval(flowInterval);
+      flowInterval = setInterval(() => {
+        if (isFlowPaused) return;
+        phaseSecondsRemaining--;
+
+        if (phaseSecondsRemaining <= 0) {
+          if (currentPhase === 'sink') {
+            currentPhase = 'peak';
+            phaseSecondsRemaining = current.peakSec;
+            playTone(660, 0.6);
+          } else {
+            currentRepNumber++;
+            if (currentRepNumber > current.reps) {
+              currentSetNumber++;
+              if (currentSetNumber > current.sets) {
+                flowQueueIndex++;
+                loadActiveFlowStep(flowQueueIndex);
+                return;
+              }
+              currentRepNumber = 1;
+            }
+            currentPhase = 'sink';
+            phaseSecondsRemaining = current.sinkSec;
+            playTone(330, 0.8);
+          }
+        }
+        updateLivePacerDisplay();
+      }, 1000);
+    }
+
+    function updateLivePacerDisplay() {
+      const cur = activeFlowQueue[flowQueueIndex];
+      document.getElementById('activeSetBadge').innerText = `${currentSetNumber} / ${cur.sets}`;
+      document.getElementById('activeRepBadge').innerText = `${currentRepNumber} / ${cur.reps}`;
+      document.getElementById('livePhaseCountdown').innerText = phaseSecondsRemaining;
+
+      if (currentPhase === 'sink') {
+        document.getElementById('livePhaseLabel').innerText = cur.id.includes('grad') ? 'REST ON SHELF' : 'HEEL SINK DEEP';
+        document.getElementById('liveMicroCue').innerText = cur.microSink;
+      } else {
+        document.getElementById('livePhaseLabel').innerText = cur.id.includes('grad') ? 'FLOAT 1–2" HOLD' : 'BALLERINA PRESS';
+        document.getElementById('liveMicroCue').innerText = cur.microPeak;
+      }
+
+      if (currentRepNumber >= 15) {
+        document.getElementById('liveWisdomText').innerText = '"Ancient Daoyin says: A tree dies from its roots, a man ages from his feet."';
+      } else if (currentRepNumber >= 8) {
+        document.getElementById('liveWisdomText').innerText = '"Feel that gentle warmth? Nitric oxide is opening stiff vessels to clear ulcers."';
+      } else {
+        document.getElementById('liveWisdomText').innerText = '"The Soleus is your second heart: pumping up to 60ml of blood upward every minute."';
+      }
+
+      const totalReps = cur.reps * cur.sets;
+      const done = ((currentSetNumber - 1) * cur.reps) + (currentRepNumber - 1);
+      document.getElementById('liveStepProgressBar').style.width = `${Math.max(5, (done / totalReps) * 100)}%`;
+    }
+
+    function togglePacerPause() {
+      isFlowPaused = !isFlowPaused;
+      document.getElementById('btnPacerPause').innerText = isFlowPaused ? '▶ Resume' : '⏸ Pause';
+    }
+
+    function skipToNextStep() {
+      flowQueueIndex++;
+      loadActiveFlowStep(flowQueueIndex);
+    }
+
+    function skipToPreviousStep() {
+      if (flowQueueIndex > 0) {
+        flowQueueIndex--;
+        loadActiveFlowStep(flowQueueIndex);
+      }
+    }
+
+    function exitGuidedFlow() {
+      clearInterval(flowInterval);
+      flowInterval = null;
+      isFlowRunning = false;
+      isFlowPaused = false;
+      document.getElementById('activePacerView').classList.add('hidden');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (isInPlaceRunning) stopInPlacePractice();
+        if (isFlowRunning) exitGuidedFlow();
+      }
+    });
+
+    function getMiniTileSvg(animClass, mode) {
+      if (mode === 'step') {
+        return `
+          <svg class="w-full h-full text-slate-100 anim-stair-pump" viewBox="0 0 180 180">
+            <path d="M 20 155 L 90 155 L 90 125 L 165 125" fill="none" stroke="#475569" stroke-width="4" />
+            <g class="stair-body-carrier">
+              <circle cx="95" cy="55" r="9" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+              <line x1="95" y1="64" x2="95" y2="108" stroke="#2dd4bf" stroke-width="5" stroke-linecap="round" />
+              <path d="M 95 75 Q 110 68 118 60" fill="none" stroke="#fde047" stroke-width="4" stroke-linecap="round" />
+              <line x1="95" y1="108" x2="93" y2="134" stroke="#134e4a" stroke-width="5" stroke-linecap="round" />
+              <g class="stair-ankle-lever">
+                <circle cx="92" cy="125" r="3.5" fill="#38bdf8" />
+                <line x1="82" y1="130" x2="100" y2="125" stroke="#fde047" stroke-width="5" stroke-linecap="round" />
+              </g>
+            </g>
+          </svg>
+        `;
+      }
+      return `
+        <svg class="w-full h-full text-slate-100 ${animClass}" viewBox="0 0 180 180">
+          <line x1="15" y1="155" x2="165" y2="155" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3" />
+          <path d="M 45 95 L 82 95" stroke="#64748b" stroke-width="5" stroke-linecap="round" />
+          <line x1="50" y1="95" x2="45" y2="155" stroke="#475569" stroke-width="3" />
+          <line x1="77" y1="95" x2="80" y2="155" stroke="#475569" stroke-width="3" />
+          <rect x="110" y="128" width="48" height="8" rx="2" fill="#475569" stroke="#38bdf8" stroke-width="1.5" />
+          <g>
+            <circle cx="68" cy="52" r="9" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+            <path d="M 62 61 L 76 61 L 74 95 L 64 95 Z" fill="#0d9488" stroke="#2dd4bf" stroke-width="2" />
+            <path d="M 65 68 L 54 80 L 52 102" fill="none" stroke="#fde047" stroke-width="4" stroke-linecap="round" />
+            <path d="M 64 94 L 98 96 L 98 104 L 64 100 Z" fill="#0f766e" stroke="#115e59" stroke-width="1.5" />
+            <g class="floating-leg-assy">
+              <path d="M 98 96 L 118 129 L 112 131 L 94 102 Z" fill="#134e4a" stroke="#2dd4bf" stroke-width="1.5" />
+              <g class="foot-lever-group">
+                <circle cx="114" cy="132" r="3.5" fill="#f59e0b" />
+                <path d="M 112 133 L 136 129 L 140 133 L 114 136 Z" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
+              </g>
+            </g>
+          </g>
+        </svg>
+      `;
+    }
+
+    function renderKioskCards() {
+      const container = document.getElementById('kioskTileGrid');
+      container.innerHTML = '';
+      const list = activeKioskGate === 'all' 
+        ? MASTER_TEMPLATES 
+        : MASTER_TEMPLATES.filter(t => t.gate === activeKioskGate);
+
+      list.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'mac-glass-card kiosk-hover-card rounded-3xl p-5 flex flex-col justify-between cursor-pointer';
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs uppercase font-extrabold px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40">
+                ${item.gateName}
+              </span>
+              <button onclick="event.stopPropagation(); openWisdomModalForId('${item.id}')" class="text-xs text-amberGold-400 hover:text-amberGold-300 flex items-center gap-1 font-bold">
+                <span>💡 Why it works</span>
+              </button>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-white mb-2 leading-snug">${item.name}</h3>
+
+            <div class="kiosk-anim-reveal-box w-full rounded-2xl bg-slate-950 border border-brand-500/40 flex items-center justify-center p-2 shadow-2xl">
+              <div class="w-full h-36">
+                ${getMiniTileSvg(item.animClass, item.mode)}
+              </div>
+            </div>
+
+            <p class="text-sm text-slate-200 leading-relaxed font-medium mb-4">${item.cue}</p>
+          </div>
+
+          <div class="pt-3.5 border-t border-slate-700/60 flex items-center justify-between gap-3">
+            <span class="text-sm font-mono font-extrabold text-brand-300">${item.defaultReps} Reps · ${item.defaultSets} Set</span>
+            <button onclick="event.stopPropagation(); addTemplateWithDefaults('${item.id}')" class="px-5 py-2.5 rounded-xl mac-gloss-btn text-white font-extrabold text-xs shadow-lg transition-all">
+              + Add to Routine
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterKioskGate(gate) {
+      activeKioskGate = gate;
+      document.querySelectorAll('.kiosk-gate-btn').forEach(btn => {
+        btn.className = 'kiosk-gate-btn px-4 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 font-bold';
+      });
+      event.target.className = 'kiosk-gate-btn px-4 py-1.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40 font-bold';
+      renderKioskCards();
+    }
+
+    function openWisdomModalForInspected() {
+      if (currentlyInspected) openWisdomModalForId(currentlyInspected.id);
+    }
+
+    function openWisdomModalForId(id) {
+      const item = MASTER_TEMPLATES.find(t => t.id === id);
+      if (!item) return;
+      document.getElementById('wisdomModalTitle').innerText = item.name;
+      document.getElementById('wisdomModalScience').innerText = item.science;
+      document.getElementById('wisdomModalAncient').innerText = item.ancient;
+      document.getElementById('wisdomModal').classList.remove('hidden');
+    }
+
+    function closeWisdomModal() {
+      document.getElementById('wisdomModal').classList.add('hidden');
+    }
+
+    const STORAGE_KEY = 'chair_taichi_routines_v1';
+    function getSavedCustomRoutines() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : {};
+      } catch (e) { return {}; }
+    }
+    function saveCustomRoutinesToStorage(r) { localStorage.setItem(STORAGE_KEY, JSON.stringify(r)); }
+
+    function populateRoutineSelector() {
+      const select = document.getElementById('routineSelect');
+      select.innerHTML = '';
+
+      const pGroup = document.createElement('optgroup');
+      pGroup.label = 'Default Presets';
+      Object.keys(SYSTEM_PRESETS).forEach(key => {
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.innerText = SYSTEM_PRESETS[key].name;
+        pGroup.appendChild(opt);
+      });
+      select.appendChild(pGroup);
+
+      const customR = getSavedCustomRoutines();
+      const keys = Object.keys(customR);
+      if (keys.length > 0) {
+        const cGroup = document.createElement('optgroup');
+        cGroup.label = 'Saved Routines';
+        keys.forEach(k => {
+          const opt = document.createElement('option');
+          opt.value = 'custom_' + k;
+          opt.innerText = `⭐ ${customR[k].name}`;
+          cGroup.appendChild(opt);
+        });
+        select.appendChild(cGroup);
+      }
+
+      select.value = currentRoutineKey;
+      document.getElementById('btnDeleteRoutine').style.display = currentRoutineKey.startsWith('custom_') ? 'inline-block' : 'none';
+    }
+
+    function handleRoutineSelectChange() {
+      loadRoutineByKey(document.getElementById('routineSelect').value);
+    }
+
+    function loadRoutineByKey(key) {
+      currentRoutineKey = key;
+      userRoutineQueue = [];
+      if (key.startsWith('custom_')) {
+        const saved = getSavedCustomRoutines()[key.replace('custom_', '')];
+        if (saved && saved.items) {
+          userRoutineQueue = buildQueueFromDefinitions(saved.items);
+          if (saved.seatHeight) setSeatPreset(saved.seatHeight);
+          if (saved.shelfHeight) setShelfPreset(saved.shelfHeight);
+        }
+      } else if (SYSTEM_PRESETS[key]) {
+        userRoutineQueue = buildQueueFromDefinitions(SYSTEM_PRESETS[key].items);
+      }
+      populateRoutineSelector();
+      renderRoutineQueue();
+      if (userRoutineQueue.length > 0) inspectTemplate(userRoutineQueue[0].templateId);
+    }
+
+    function buildQueueFromDefinitions(items) {
+      return items.map(def => {
+        const tpl = MASTER_TEMPLATES.find(t => t.id === def.templateId) || MASTER_TEMPLATES[0];
+        return {
+          instanceId: 'item_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+          templateId: tpl.id,
+          name: tpl.name,
+          reps: def.reps !== undefined ? def.reps : tpl.defaultReps,
+          sets: def.sets !== undefined ? def.sets : tpl.defaultSets,
+          sinkSec: def.sinkSec !== undefined ? def.sinkSec : tpl.defaultSinkSec,
+          peakSec: def.peakSec !== undefined ? def.peakSec : tpl.defaultPeakSec,
+          restBetweenSets: def.restBetweenSets !== undefined ? def.restBetweenSets : tpl.defaultRestBetweenSets,
+          animClass: tpl.animClass,
+          mode: tpl.mode,
+          hasStaff: tpl.hasStaff,
+          cue: tpl.cue,
+          microSink: tpl.microSink,
+          microPeak: tpl.microPeak,
+          target: tpl.target,
+          badge: tpl.badge
+        };
+      });
+    }
+
+    function openSaveRoutineModal() {
+      document.getElementById('saveRoutineNameInput').value = '';
+      document.getElementById('saveRoutineModal').classList.remove('hidden');
+    }
+    function closeSaveModal() { document.getElementById('saveRoutineModal').classList.add('hidden'); }
+
+    function confirmSaveRoutine() {
+      const name = document.getElementById('saveRoutineNameInput').value.trim();
+      if (!name) return alert('Please enter a routine name.');
+      const r = getSavedCustomRoutines();
+      const k = 'rt_' + Date.now();
+      r[k] = { 
+        name: name, 
+        items: userRoutineQueue,
+        seatHeight: customSeatHeight,
+        shelfHeight: customShelfHeight
+      };
+      saveCustomRoutinesToStorage(r);
+      closeSaveModal();
+      currentRoutineKey = 'custom_' + k;
+      populateRoutineSelector();
+    }
+
+    function deleteCurrentRoutine() {
+      if (!confirm('Delete this custom routine?')) return;
+      const r = getSavedCustomRoutines();
+      delete r[currentRoutineKey.replace('custom_', '')];
+      saveCustomRoutinesToStorage(r);
+      loadRoutineByKey('preset_venous_20');
+    }
+
+    function renderLibraryTemplates() {
+      const container = document.getElementById('exerciseLibraryList');
+      container.innerHTML = '';
+      MASTER_TEMPLATES.forEach(tpl => {
+        const isSelected = currentlyInspected.id === tpl.id;
+        const card = document.createElement('div');
+        card.className = `p-3 rounded-xl border cursor-pointer transition-all ${
+          isSelected 
+            ? 'bg-brand-950/80 border-brand-500 shadow-md ring-2 ring-brand-500/40' 
+            : 'bg-slate-900 border-slate-800 hover:border-slate-700 hover:bg-slate-850'
+        }`;
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-1 mb-1">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-brand-950 text-brand-300 border border-brand-800/60">${tpl.badge}</span>
+            <span class="text-xs text-slate-400 font-mono font-bold">${tpl.defaultReps}R · ${tpl.defaultSets}S</span>
+          </div>
+          <div class="text-sm font-bold text-slate-100 line-clamp-1">${tpl.name}</div>
+          <div class="mt-2.5 flex items-center justify-between pt-1.5 border-t border-slate-800">
+            <span class="text-xs text-brand-400 font-bold">Select ➔</span>
+            <button onclick="event.stopPropagation(); addTemplateWithDefaults('${tpl.id}')" class="text-xs px-3 py-1 rounded-md mac-gloss-btn text-white font-bold">+ Add</button>
+          </div>
+        `;
+        card.onclick = () => inspectTemplate(tpl.id);
+        container.appendChild(card);
+      });
+      document.getElementById('libBadgeCount').innerText = `${MASTER_TEMPLATES.length} exercises`;
+    }
+
+    function inspectTemplate(tplId) {
+      if (isInPlaceRunning) stopInPlacePractice();
+      const found = MASTER_TEMPLATES.find(t => t.id === tplId);
+      if (!found) return;
+      currentlyInspected = found;
+      centerReps = found.defaultReps;
+      centerSets = found.defaultSets;
+      document.getElementById('centerRepsDisplay').innerText = centerReps;
+      document.getElementById('centerSetsDisplay').innerText = centerSets;
+
+      document.getElementById('inspectBadge').innerText = `Chair (${customSeatHeight}mm) & Rail (${customShelfHeight}mm)`;
+      document.getElementById('inspectModeSub').innerText = found.subBadge;
+      document.getElementById('inspectTitle').innerText = found.name;
+      document.getElementById('inspectCue').innerText = found.cue;
+      document.getElementById('inspectTiming').innerText = `${found.defaultSinkSec}s Sink + ${found.defaultPeakSec}s Press`;
+
+      const stageSvg = document.getElementById('stageSvg');
+      const rigStoolAndShelf = document.getElementById('rigStoolAndShelf');
+      const rigStairStep = document.getElementById('rigStairStep');
+      const daoyinStaffBar = document.getElementById('daoyinStaffBar');
+      const armPathAnchor = document.getElementById('armsAnchorRig');
+      const armsTaiChiFlowRig = document.getElementById('armsTaiChiFlowRig');
+
+      if (found.mode === 'step') {
+        rigStoolAndShelf.classList.add('hidden');
+        rigStairStep.classList.remove('hidden');
+        stageSvg.className.baseVal = `w-60 h-60 anim-stair-pump text-slate-100`;
+      } else {
+        rigStairStep.classList.add('hidden');
+        rigStoolAndShelf.classList.remove('hidden');
+        stageSvg.className.baseVal = `w-60 h-60 ${found.animClass} text-slate-100`;
+        daoyinStaffBar.style.display = found.hasStaff ? 'block' : 'none';
+
+        if (found.id === 'commencing_breath' || found.id.includes('grasp') || found.id.includes('white_crane')) {
+          armPathAnchor.classList.add('hidden');
+          armsTaiChiFlowRig.classList.remove('hidden');
+        } else {
+          armsTaiChiFlowRig.classList.add('hidden');
+          armPathAnchor.classList.remove('hidden');
+        }
+      }
+      renderLibraryTemplates();
+    }
+
+    function addInspectedExercise() {
+      if (!currentlyInspected) return;
+      userRoutineQueue.push({
+        instanceId: 'item_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        templateId: currentlyInspected.id,
+        name: currentlyInspected.name,
+        reps: centerReps,
+        sets: centerSets,
+        sinkSec: currentlyInspected.defaultSinkSec,
+        peakSec: currentlyInspected.defaultPeakSec,
+        restBetweenSets: currentlyInspected.defaultRestBetweenSets,
+        animClass: currentlyInspected.animClass,
+        mode: currentlyInspected.mode,
+        hasStaff: currentlyInspected.hasStaff,
+        cue: currentlyInspected.cue,
+        microSink: currentlyInspected.microSink,
+        microPeak: currentlyInspected.microPeak,
+        target: currentlyInspected.target,
+        badge: currentlyInspected.badge
+      });
+      renderRoutineQueue();
+    }
+
+    function addTemplateWithDefaults(tplId) {
+      const tpl = MASTER_TEMPLATES.find(t => t.id === tplId);
+      if (!tpl) return;
+
+      userRoutineQueue.push({
+        instanceId: 'item_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        templateId: tpl.id,
+        name: tpl.name,
+        reps: tpl.defaultReps,
+        sets: tpl.defaultSets,
+        sinkSec: tpl.defaultSinkSec,
+        peakSec: tpl.defaultPeakSec,
+        restBetweenSets: tpl.defaultRestBetweenSets,
+        animClass: tpl.animClass,
+        mode: tpl.mode,
+        hasStaff: tpl.hasStaff,
+        cue: tpl.cue,
+        microSink: tpl.microSink,
+        microPeak: tpl.microPeak,
+        target: tpl.target,
+        badge: tpl.badge
+      });
+      renderRoutineQueue();
+    }
+
+    function calculateItemDurationSeconds(item) {
+      return ((item.sinkSec + item.peakSec) * item.reps * item.sets) + ((item.sets - 1) * item.restBetweenSets);
+    }
+
+    function renderRoutineQueue() {
+      const container = document.getElementById('queueItemsList');
+      container.innerHTML = '';
+      document.getElementById('queueItemCount').innerText = `${userRoutineQueue.length} items`;
+
+      let totalSec = userRoutineQueue.reduce((acc, i) => acc + calculateItemDurationSeconds(i), 0);
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      document.getElementById('queueTotalDuration').innerText = `${mins}m ${secs < 10 ? '0' : ''}${secs}s`;
+
+      if (userRoutineQueue.length === 0) {
+        container.innerHTML = `<div class="text-center p-4 text-slate-400 text-xs">Queue is empty. Select a preset or tap '+ Add'.</div>`;
+        updatePrintSheet();
+        return;
+      }
+
+      userRoutineQueue.forEach((item, idx) => {
+        const row = document.createElement('div');
+        row.className = 'p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs hover:border-slate-700 shadow';
+        row.innerHTML = `
+          <div class="truncate mr-2">
+            <span class="font-bold text-sm text-slate-100">${idx + 1}. ${item.name}</span>
+            <div class="text-xs text-brand-300 font-mono font-bold mt-0.5">${item.reps} Reps × ${item.sets} Set (${item.sinkSec}s / ${item.peakSec}s)</div>
+          </div>
+          <button onclick="removeQueueInstance('${item.instanceId}')" class="text-rose-400 hover:text-rose-300 font-black text-base p-1">✕</button>
+        `;
+        container.appendChild(row);
+      });
+
+      updatePrintSheet();
+    }
+
+    function removeQueueInstance(instanceId) {
+      userRoutineQueue = userRoutineQueue.filter(i => i.instanceId !== instanceId);
+      renderRoutineQueue();
+    }
+
+    function clearRoutineQueue() {
+      userRoutineQueue = [];
+      renderRoutineQueue();
+    }
+
+    function updatePrintSheet() {
+      const printContainer = document.getElementById('printQueueContainer');
+      printContainer.innerHTML = '';
+      document.getElementById('printDateStamp').innerText = 'Date: ' + new Date().toLocaleDateString();
+
+      const select = document.getElementById('routineSelect');
+      document.getElementById('printRoutineTitle').innerText = select.options[select.selectedIndex]?.text || 'Active Flow';
+      document.getElementById('printSeatHeight').innerText = `${customSeatHeight}mm`;
+      document.getElementById('printShelfHeight').innerText = `${customShelfHeight}mm`;
+
+      if (userRoutineQueue.length === 0) {
+        printContainer.innerHTML = '<div class="text-xs italic text-slate-500">No exercises added to this routine yet.</div>';
+        return;
+      }
+
+      userRoutineQueue.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'p-3 border border-slate-300 rounded mb-2 text-xs';
+        div.innerHTML = `
+          <div class="flex justify-between items-center mb-1">
+            <strong class="text-slate-900">${i + 1}. ${item.name}</strong>
+            <span class="bg-slate-200 px-2 py-0.5 rounded font-mono font-bold">${item.reps} Reps × ${item.sets} Set (${item.sinkSec}s Sink / ${item.peakSec}s Press)</span>
+          </div>
+          <div class="text-slate-700"><strong>Prescribed Cue:</strong> ${item.cue}</div>
+          <div class="text-slate-500 mt-0.5"><strong>Target Focus:</strong> ${item.target}</div>
+        `;
+        printContainer.appendChild(div);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderLibraryTemplates();
+      populateRoutineSelector();
+      loadRoutineByKey('preset_venous_20');
+      updateCustomHeights();
+    });
+  </script>
+</body>
+</html>
