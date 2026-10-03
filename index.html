@@ -106,7 +106,7 @@
       margin-bottom: 0.75rem;
     }
 
-    /* Biomechanical Animations */
+    /* Biomechanical Animations - Synced to 10s (5s sink / 5s rise) */
     .anim-stool-pump .foot-lever-group {
       animation: soleusPumpCycle 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
       transform-origin: 142px 133px;
@@ -271,7 +271,7 @@
         </div>
       </section>
 
-      <!-- CENTER: STAGE PREVIEW & BIOMECHANICS RIG (EXPANDED CIRCLE) -->
+      <!-- CENTER: STAGE PREVIEW (WITH UNBLOCKED LIVE PRACTITIONER) -->
       <section class="flex-1 flex flex-col bg-slate-900/80 rounded-xl border border-slate-800 overflow-hidden relative shadow-2xl">
         <div id="inspectorView" class="flex-1 flex flex-col p-4 overflow-hidden">
           
@@ -279,7 +279,6 @@
           <div class="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0 gap-3">
             <div class="truncate">
               <div class="flex items-center gap-2">
-                <!-- Trigger to open Height Setup Modal -->
                 <button onclick="openHeightModal()" class="text-xs uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40 hover:bg-brand-500/30 transition-colors flex items-center gap-1.5" title="Click to adjust chair & rail height">
                   <span id="inspectBadge">Chair (670mm) & Rail (370mm)</span>
                   <span class="text-[10px] text-brand-400">✏</span>
@@ -321,7 +320,42 @@
             </div>
           </div>
 
-          <!-- Cartoon Vector Stage (Unsquished Rounded Circle) -->
+          <!-- FLOATING IN-PLACE LIVE BANNER (OUTSIDE THE CIRCLE - ZERO OBSTRUCTION) -->
+          <div id="inPlaceFloatingHeader" class="hidden shrink-0 mt-2 bg-slate-900/90 border border-brand-500/50 rounded-2xl p-2.5 flex items-center justify-between px-5 shadow-lg">
+            <div class="flex items-center gap-3">
+              <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              </span>
+              <div>
+                <span id="inPlacePhaseLabel" class="text-xs font-black tracking-widest uppercase text-sky-400 block">
+                  HEEL SINK DEEP
+                </span>
+                <span id="inPlaceMicroCue" class="text-xs text-slate-300 font-semibold block">
+                  Drop heels below shelf edge
+                </span>
+              </div>
+            </div>
+
+            <!-- Big Centered Countdown Number (Clear & High Contrast) -->
+            <div class="flex items-center gap-4">
+              <div class="text-right">
+                <span class="text-[10px] text-slate-400 uppercase font-bold block">SECONDS</span>
+                <span id="inPlaceCountdown" class="text-3xl font-black text-white font-mono leading-none">
+                  5
+                </span>
+              </div>
+              <div class="h-8 w-px bg-slate-800"></div>
+              <div class="text-right">
+                <span class="text-[10px] text-slate-400 uppercase font-bold block">PROGRESS</span>
+                <span id="inPlaceSetRepBadge" class="text-sm font-black text-amberGold-400 font-mono leading-none">
+                  SET 1/1 · REP 1/20
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vector Stage (100% UNBLOCKED & FULLY VISIBLE IN MOTION) -->
           <div class="flex-1 flex flex-col items-center justify-center relative my-2 overflow-hidden">
             <div class="w-80 h-80 rounded-full bg-slate-950 border-2 border-brand-500/40 shadow-2xl flex items-center justify-center relative overflow-hidden shrink-0">
               <div class="absolute inset-0 bg-radial from-brand-500/10 via-transparent to-transparent"></div>
@@ -371,11 +405,13 @@
                     <g class="torso-core-rig">
                       <path d="M 62 61 L 76 61 L 74 95 L 64 95 Z" fill="url(#robeGrad)" stroke="#2dd4bf" stroke-width="2" />
                       
+                      <!-- Hands Anchored Low Behind Seat -->
                       <g id="armsAnchorRig">
                         <path d="M 65 68 L 54 80 L 52 102" fill="none" stroke="#fde047" stroke-width="4.5" stroke-linecap="round" />
                         <circle cx="52" cy="102" r="3" fill="#ca8a04" />
                       </g>
 
+                      <!-- Tai Chi Arms -->
                       <g id="armsTaiChiFlowRig" class="hidden taichi-arms">
                         <path d="M 68 68 Q 84 76 92 88" fill="none" stroke="#fde047" stroke-width="4.5" stroke-linecap="round" />
                         <circle cx="92" cy="88" r="3" fill="#ca8a04" />
@@ -384,13 +420,13 @@
 
                     <path d="M 64 94 L 98 96 L 98 104 L 64 100 Z" fill="#0f766e" stroke="#115e59" stroke-width="1.5" />
 
-                    <!-- Lower Leg & Shin -->
+                    <!-- Lower Leg & Shin with Venous Flow Indicator -->
                     <g class="floating-leg-assy">
                       <path d="M 98 96 L 118 129 L 112 131 L 94 102 Z" fill="#134e4a" stroke="#2dd4bf" stroke-width="1.5" />
                       <line x1="97" y1="97" x2="116" y2="129" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3,3" opacity="0.85" />
                       <line class="venous-pulse-stream" x1="116" y1="129" x2="98" y2="98" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6,6" stroke-linecap="round" />
 
-                      <!-- Foot & Ankle Lever -->
+                      <!-- Foot & Ankle Lever System -->
                       <g class="foot-lever-group">
                         <circle cx="114" cy="132" r="3.5" fill="#f59e0b" />
                         <path d="M 112 133 L 136 129 L 140 133 L 114 136 Z" fill="#fde047" stroke="#ca8a04" stroke-width="1.5" />
@@ -424,24 +460,6 @@
                   </g>
                 </g>
               </svg>
-
-              <!-- In-Place HUD Overlay -->
-              <div id="inPlaceHUD" class="hidden absolute inset-0 bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center p-3 text-center">
-                <div id="inPlacePhaseLabel" class="text-xs font-black tracking-widest uppercase text-sky-400 mb-1">
-                  HEEL SINK DEEP
-                </div>
-                <div id="inPlaceCountdown" class="text-6xl font-black text-white font-mono leading-none my-1">
-                  5
-                </div>
-                <div class="flex items-center gap-2 mt-1">
-                  <span class="text-[11px] bg-slate-900 border border-brand-500/40 text-brand-300 px-2 py-0.5 rounded font-mono font-bold" id="inPlaceSetRepBadge">
-                    SET 1/1 · REP 1/20
-                  </span>
-                </div>
-                <div id="inPlaceMicroCue" class="text-[11px] text-slate-300 font-semibold mt-2 px-2">
-                  Drop heels below shelf edge
-                </div>
-              </div>
             </div>
 
             <!-- Stage Cues -->
@@ -675,7 +693,6 @@
   <!-- =========================================================
        POPUP MODALS
        ========================================================= -->
-  <!-- DEDICATED HEIGHT POPUP MODAL (REPLACES CLUTTERED BAR) -->
   <div id="heightModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="mac-glass-card rounded-3xl p-6 w-full max-w-md shadow-2xl space-y-4">
       <div class="flex justify-between items-start border-b border-slate-700/60 pb-3">
@@ -690,7 +707,6 @@
       </div>
 
       <div class="space-y-4">
-        <!-- Chair Height Section -->
         <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
           <div class="flex justify-between items-center mb-2">
             <label class="text-xs font-bold text-slate-300 uppercase">Chair Seat Height</label>
@@ -706,7 +722,6 @@
           </div>
         </div>
 
-        <!-- Rail/Shelf Height Section -->
         <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
           <div class="flex justify-between items-center mb-2">
             <label class="text-xs font-bold text-slate-300 uppercase">Foot Rail / Shelf Height</label>
@@ -1262,7 +1277,7 @@
       document.getElementById('centerSetsDisplay').innerText = centerSets;
     }
 
-    /* IN-PLACE PRACTICE */
+    /* IN-PLACE PRACTICE (WITH FLOATING BANNER - NO OBSTRUCTION) */
     function togglePlayThisMoveInPlace() {
       if (isInPlaceRunning) {
         stopInPlacePractice();
@@ -1289,7 +1304,8 @@
       document.getElementById('centerPlayBtnIcon').innerText = '⏹';
       document.getElementById('centerPlayBtnText').innerText = 'STOP MOVE';
 
-      document.getElementById('inPlaceHUD').classList.remove('hidden');
+      // Display floating header (outside circle)
+      document.getElementById('inPlaceFloatingHeader').classList.remove('hidden');
       updateInPlaceDisplay();
       playTone(330, 0.8);
 
@@ -1329,11 +1345,11 @@
 
       if (inPlacePhase === 'sink') {
         document.getElementById('inPlacePhaseLabel').innerText = currentlyInspected.id.includes('grad') ? 'REST ON SHELF' : 'HEEL SINK DEEP';
-        document.getElementById('inPlacePhaseLabel').className = 'text-xs font-black tracking-widest uppercase text-sky-400 mb-1';
+        document.getElementById('inPlacePhaseLabel').className = 'text-xs font-black tracking-widest uppercase text-sky-400 block';
         document.getElementById('inPlaceMicroCue').innerText = currentlyInspected.microSink;
       } else {
         document.getElementById('inPlacePhaseLabel').innerText = currentlyInspected.id.includes('grad') ? 'FLOAT 1–2" HOLD' : 'BALLERINA PRESS';
-        document.getElementById('inPlacePhaseLabel').className = 'text-xs font-black tracking-widest uppercase text-amberGold-400 mb-1';
+        document.getElementById('inPlacePhaseLabel').className = 'text-xs font-black tracking-widest uppercase text-amberGold-400 block';
         document.getElementById('inPlaceMicroCue').innerText = currentlyInspected.microPeak;
       }
     }
@@ -1348,7 +1364,7 @@
       document.getElementById('centerPlayBtnIcon').innerText = '▶';
       document.getElementById('centerPlayBtnText').innerText = 'PLAY THIS MOVE';
 
-      document.getElementById('inPlaceHUD').classList.add('hidden');
+      document.getElementById('inPlaceFloatingHeader').classList.add('hidden');
     }
 
     /* FULL QUEUE RUNNER */
